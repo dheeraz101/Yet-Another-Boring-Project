@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Empty",
+    "description": "A plugin-first system where nothing exists by default.",
+    "stack": "JavaScript, Modular System",
+    "link": "https://emptyweb.netlify.app/",
+    "image": "images/empty.png"
+  },
+  {
+    "name": "AuraSelect",
+    "description": "A modern selection and UI interaction experiment.",
+    "stack": "HTML, CSS, JS",
+    "link": "https://auraselect.netlify.app/",
+    "image": "images/aura.png"
+  }
+]
