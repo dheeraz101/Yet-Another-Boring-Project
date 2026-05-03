@@ -42,8 +42,7 @@ yabp/
 ├── projects.json     # Community projects database
 ├── logo.png          # Official YABP logo (512×512)
 ├── favicon.ico       # Official favicon
-├── README.md         # This file
-└── assets/           # (optional) screenshots, etc.
+└── README.md         # This file
 ```
 
 ---
