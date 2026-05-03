@@ -170,8 +170,8 @@
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            padding: 6px 14px;
+            gap: 8px;
+            padding: 7px 18px;
             border-radius: var(--radius-pill);
             background: var(--accent-subtle);
             color: var(--accent);
@@ -182,23 +182,13 @@
             border: 1px solid rgba(0, 113, 227, 0.12);
             animation: fadeInUp 0.7s 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
         }
-        .badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: pulse-dot 2s ease-in-out infinite;
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: scale(1.5);
-            }
+
+        .verified-icon {
+            font-size: 1.3rem;
+            color: var(--accent);          /* Twitter/X blue */
+            line-height: 1;
+            vertical-align: middle;
+            filter: drop-shadow(0 0 6px rgba(29,155,240,0.3));
         }
 
         .hero-title {
@@ -722,8 +712,8 @@
 
     <!-- ─── Main Hero ──────────────────── -->
     <main class="main-container">
-        <div class="badge">
-            <span class="badge-dot"></span>
+        <div class="badge verified-badge">
+            <i class="ri-verified-badge-fill verified-icon"></i>
             Official Project
         </div>
         <h1 class="hero-title">YABP<span class="accent-dot">•</span></h1>
