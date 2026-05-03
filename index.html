@@ -88,59 +88,6 @@
             background-size: 200px 200px;
         }
 
-        /* ─── Header ─────────────────────── */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 16px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: rgba(245, 245, 247, 0.72);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: -0.02em;
-        }
-
-        .header-logo {
-            height: 50px;          /* Adjust to match your logo’s proportions */
-            width: auto;
-            border-radius: 0;      /* Remove if your logo has a shape */
-            display: block;
-            flex-shrink: 0;
-        }
-
-        .header-link {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            font-weight: 450;
-            transition: color var(--transition-fast);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .header-link:hover {
-            color: var(--text-primary);
-        }
-        .header-link i {
-            font-size: 1.1rem;
-        }
-
         /* ─── Main Content ──────────────── */
         .main-container {
             position: relative;
@@ -152,7 +99,7 @@
             text-align: center;
             max-width: 680px;
             width: 100%;
-            padding: 80px 20px 40px;
+            padding: 0 20px 40px;
             animation: fadeInUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
         }
 
@@ -222,6 +169,178 @@
             margin: 0 auto 40px;
             letter-spacing: -0.005em;
             animation: fadeInUp 0.7s 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+
+        /* Large hero logo */
+        .hero-logo-big {
+            margin-bottom: 10px;
+            animation: fadeInDown 0.7s 0.05s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+        .hero-logo-img {
+            display: block;
+            height: 90px;               /* base size, adjust to your taste */
+            width: auto;
+            margin: 0 auto;
+            filter: drop-shadow(0 6px 14px rgba(0,0,0,0.08));
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .hero-logo-img:hover {
+            transform: scale(1.06);
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Badge inside header – make it compact */
+        .header-badge {
+            margin-bottom: 0;           /* remove bottom margin */
+            padding: 5px 14px;
+            font-size: 0.73rem;
+            gap: 6px;
+        }
+        .header-badge .verified-icon {
+            font-size: 1.1rem;
+        }
+
+        /* ─── Card Layout ────────────────── */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            padding: 40px 36px 48px;
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid var(--border-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+        }
+
+        .card-logo {
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .card-logo:hover {
+            transform: scale(1.05);
+        }
+        .card-logo-img {
+            height: 36px;
+            width: auto;
+            display: block;
+        }
+
+        .card-github-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 450;
+            transition: color 0.15s ease;
+        }
+        .card-github-link:hover {
+            color: var(--text-primary);
+        }
+        .card-github-link i {
+            font-size: 1.2rem;
+        }
+
+        /* ─── Dark Mode Variables ────────── */
+        .dark-mode {
+            --bg-primary: #1d1d1f;
+            --bg-card: #2c2c2e;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #86868b;
+            --accent: #2997ff;
+            --accent-hover: #40a9ff;
+            --accent-subtle: rgba(41, 151, 255, 0.15);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-card: rgba(255, 255, 255, 0.06);
+            --bg-modal-overlay: rgba(0, 0, 0, 0.65);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.25);
+            --shadow-xl: 0 32px 80px rgba(0, 0, 0, 0.35);
+        }
+        .dark-mode .card {
+            border: 1px solid var(--border-card);
+        }
+        .dark-mode .btn-explore {
+            box-shadow: 0 2px 12px rgba(41, 151, 255, 0.4);
+        }
+        .dark-mode .btn-explore:hover {
+            box-shadow: 0 6px 24px rgba(41, 151, 255, 0.55);
+        }
+        .dark-mode .verified-icon {
+            filter: drop-shadow(0 0 6px rgba(41,151,255,0.4));
+        }
+
+        /* Dark mode overrides for modal internals */
+        .dark-mode .modal-header,
+        .dark-mode .modal-footer {
+            background: rgba(44, 44, 46, 0.6);   /* match card background */
+            border-color: var(--border-subtle);
+        }
+        .dark-mode .modal-title,
+        .dark-mode .btn-close {
+            color: var(--text-primary);
+        }
+        .dark-mode .btn-close:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+        }
+        .dark-mode .modal-body {
+            background: var(--bg-card);
+        }
+        .dark-mode table thead th {
+            background: var(--bg-card);          /* ensure sticky header matches */
+            border-bottom-color: var(--border-subtle);
+            color: var(--text-tertiary);
+        }
+        .dark-mode table tbody td {
+            border-bottom-color: var(--border-subtle);
+            color: var(--text-primary);
+        }
+        .dark-mode table tbody tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+        .dark-mode .icon-link {
+            color: var(--text-tertiary);
+        }
+        .dark-mode .icon-link:hover {
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+        }
+        .dark-mode .icon-link.github-link:hover {
+            background: #1b1f23;
+            color: #fff;
+        }
+        .dark-mode .state-message i {
+            color: var(--text-tertiary);
+        }
+        .dark-mode .spinner {
+            border-color: var(--border-subtle);
+            border-top-color: var(--accent);
+        }
+        .dark-mode .state-message p {
+            color: var(--text-secondary);
+        }
+        /* Fix the error Retry button inside modal (dark version) */
+        .dark-mode .state-message .btn-explore {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(41, 151, 255, 0.4);
         }
 
         /* ─── Button ────────────────────── */
@@ -575,24 +694,21 @@
 
         /* ─── Responsive ────────────────── */
         @media (max-width: 768px) {
-            .header {
-                padding: 12px 18px;
-            }
-            .header-brand {
-                font-size: 0.9rem;
-                gap: 7px;
-            }
-            .header-logo {
-                width: 28px;
-                height: 28px;
-                font-size: 0.7rem;
-            }
-            .header-link {
-                font-size: 0.78rem;
-            }
             .main-container {
-                padding: 60px 16px 30px;
+                padding: 0 12px 30px;
                 max-width: 100%;
+            }
+            .card {
+                padding: 28px 20px 36px;
+                border-radius: var(--radius-lg);
+                max-width: 100%;
+                box-shadow: var(--shadow-md);
+            }
+            .card-header {
+                margin-bottom: 24px;
+            }
+            .card-logo-img {
+                height: 30px;
             }
             .hero-title {
                 font-size: 2.4rem;
@@ -656,16 +772,36 @@
 
         @media (max-width: 420px) {
             body {
-                padding: 12px;
+                padding: 0px;
             }
-            .header {
-                padding: 10px 14px;
+            /* Main container takes full height */
+            .main-container {
+                padding: 0;
+                height: 100vh;            /* or use min-height for content that may scroll */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                max-width: 100%;
             }
-            .header-link span {
-                display: none;
+
+            /* Card becomes full screen with scrolling if needed */
+            .card {
+                border-radius: 0;
+                box-shadow: none;
+                border: none;
+                padding: 28px 18px 32px;
+                width: 100%;
+                height: 100vh;           /* full height */
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                overflow-y: auto;        /* allow scroll if content overflows */
             }
-            .header-link i {
-                font-size: 1.3rem;
+
+            .card-header {
+                margin-bottom: 20px;
+                flex-shrink: 0;
             }
             .hero-title {
                 font-size: 2rem;
@@ -699,36 +835,41 @@
 </head>
 <body>
 
-    <!-- ─── Header ─────────────────────── -->
-    <header class="header">
-        <a href="https://yabp.netlify.app/" class="header-brand" aria-label="YABP Home">
-            <img src="logo.png" alt="YABP" class="header-logo">
-        </a>
-        <a href="https://github.com" target="_blank" rel="noopener" class="header-link" title="Contribute on GitHub">
-            <i class="ri-github-fill"></i>
-            <span>Contribute</span>
-        </a>
-    </header>
-
     <!-- ─── Main Hero ──────────────────── -->
     <main class="main-container">
-        <div class="badge verified-badge">
-            <i class="ri-verified-badge-fill verified-icon"></i>
-            Official Project
+        <div class="card">
+            <!-- Card header: logo + github -->
+            <div class="card-header">
+                <div class="badge verified-badge header-badge">
+                    <i class="ri-verified-badge-fill verified-icon"></i>
+                    Official Project
+                </div>
+                <a href="https://github.com" target="_blank" rel="noopener" class="card-github-link" title="Contribute on GitHub">
+                    <i class="ri-github-fill"></i>
+                    <span>Contribute</span>
+                </a>
+            </div>
+
+            <!-- Original hero content -->
+            <div class="hero-logo-big">
+                <a href="#" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+                    <img src="logo.png" alt="YABP" class="hero-logo-img">
+                </a>
+            </div>
+            <h1 class="hero-title">YABP<span class="accent-dot">•</span></h1>
+            <p class="hero-subtitle">Yet Another Boring Project</p>
+            <p class="hero-description">
+                A curated collection of projects inspired by
+                <strong>minimal design philosophy</strong> and
+                <strong>productivity</strong>. Built to help developers
+                improve, create meaningful tools, and ship better work
+                together.
+            </p>
+            <button class="btn-explore" id="btnExplore" aria-label="Explore all projects">
+                Explore Projects
+                <i class="ri-arrow-right-line"></i>
+            </button>
         </div>
-        <h1 class="hero-title">YABP<span class="accent-dot">•</span></h1>
-        <p class="hero-subtitle">Yet Another Boring Project</p>
-        <p class="hero-description">
-            A curated collection of projects inspired by
-            <strong>minimal design philosophy</strong> and
-            <strong>productivity</strong>. Built to help developers
-            improve, create meaningful tools, and ship better work
-            together.
-        </p>
-        <button class="btn-explore" id="btnExplore" aria-label="Explore all projects">
-            Explore Projects
-            <i class="ri-arrow-right-line"></i>
-        </button>
     </main>
 
     <!-- ─── Footer ─────────────────────── -->
@@ -997,6 +1138,23 @@
                     return dateStr;
                 }
             }
+
+            // ── Theme Toggle ─────────────────
+            const themeToggle = document.getElementById('themeToggle');
+            const htmlElement = document.documentElement;
+
+            // Load saved theme (default light)
+            const savedTheme = localStorage.getItem('yabp-theme');
+            if (savedTheme === 'dark') {
+                htmlElement.classList.add('dark-mode');
+            }
+
+            themeToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                htmlElement.classList.toggle('dark-mode');
+                const isDark = htmlElement.classList.contains('dark-mode');
+                localStorage.setItem('yabp-theme', isDark ? 'dark' : 'light');
+            });
 
             // ── Pre-fetch on page load (optional, for faster modal open) ──
             // Uncomment the line below to pre-fetch when the page loads:
