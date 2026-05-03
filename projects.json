@@ -9,7 +9,7 @@
   },
   {
     "name": "OriginJS",
-    "date": "2024-12-30",
+    "date": "2026-01-24",
     "description": "lightweight, zero-config JavaScript library that visually exposes content origin metadata",
     "link": "https://originjs.netlify.app/",
     "github": "https://github.com/dheeraz101/OriginJS"
@@ -17,7 +17,7 @@
   {
     "name": "GuardJS",
     "date": "2026-01-30",
-    "description": "lA tiny, dependency-free script that detects weak or risky client environments and warns users only when it actually matters",
+    "description": "A tiny, dependency-free script that detects weak or risky client environments and warns users only when it actually matters",
     "link": "https://guardjs.netlify.app/",
     "github": "https://github.com/dheeraz101/GuardJS"
   },
