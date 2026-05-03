@@ -1,180 +1,1027 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YABP — Yet Another Boring Project</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
-      color: #eaeaea;
-      line-height: 1.6;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YABP • Yet Another Boring Project</title>
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 20px;
-    }
+    <!-- Inter Font (SF Pro alternative) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;450;500;600;700&display=swap" rel="stylesheet">
 
-    header {
-      padding: 60px 20px 40px;
-      text-align: center;
-    }
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
+    <link rel="favicon" type="image/ico" sizes="32x32" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
 
-    header p {
-      margin-top: 10px;
-      color: #aaa;
-    }
+    <style>
+        :root {
+            --bg-primary: #f5f5f7;
+            --bg-card: #ffffff;
+            --bg-modal-overlay: rgba(0, 0, 0, 0.45);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --accent: #0071e3;
+            --accent-hover: #0077ed;
+            --accent-subtle: #e8f2fd;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-card: rgba(0, 0, 0, 0.06);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 32px 80px rgba(0, 0, 0, 0.16), 0 12px 32px rgba(0, 0, 0, 0.10);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --radius-pill: 980px;
+            --transition-fast: 0.15s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-smooth: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-spring: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
 
-    .section {
-      margin: 60px 0;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .section h2 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-    }
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+            padding: 24px;
+            position: relative;
+        }
 
-    .card {
-      background: #111;
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.2s ease, border 0.2s ease;
-      border: 1px solid transparent;
-    }
+        /* Subtle background texture/grain */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+        }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border: 1px solid #333;
-    }
+        /* ─── Header ─────────────────────── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(245, 245, 247, 0.72);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
 
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.02em;
+        }
 
-    .card-content {
-      padding: 16px;
-    }
+        .header-logo {
+            height: 50px;          /* Adjust to match your logo’s proportions */
+            width: auto;
+            border-radius: 0;      /* Remove if your logo has a shape */
+            display: block;
+            flex-shrink: 0;
+        }
 
-    .card-content h3 {
-      margin-bottom: 8px;
-    }
+        .header-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 450;
+            transition: color var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .header-link:hover {
+            color: var(--text-primary);
+        }
+        .header-link i {
+            font-size: 1.1rem;
+        }
 
-    .card-content p {
-      font-size: 0.9rem;
-      color: #bbb;
-      margin-bottom: 10px;
-    }
+        /* ─── Main Content ──────────────── */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            max-width: 680px;
+            width: 100%;
+            padding: 80px 20px 40px;
+            animation: fadeInUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
 
-    .tags {
-      font-size: 0.75rem;
-      color: #888;
-      margin-bottom: 10px;
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .card a {
-      display: inline-block;
-      text-decoration: none;
-      color: #fff;
-      font-size: 0.85rem;
-      border-bottom: 1px solid #555;
-    }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            background: var(--accent-subtle);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 28px;
+            border: 1px solid rgba(0, 113, 227, 0.12);
+            animation: fadeInUp 0.7s 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.5);
+            }
+        }
 
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      color: #666;
-      font-size: 0.8rem;
-    }
+        .hero-title {
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            animation: fadeInUp 0.7s 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+        .hero-title .accent-dot {
+            color: var(--accent);
+        }
 
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-    }
-  </style>
+        .hero-subtitle {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            font-weight: 450;
+            color: var(--text-secondary);
+            letter-spacing: -0.01em;
+            margin-bottom: 8px;
+            animation: fadeInUp 0.7s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-tertiary);
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 40px;
+            letter-spacing: -0.005em;
+            animation: fadeInUp 0.7s 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+
+        /* ─── Button ────────────────────── */
+        .btn-explore {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            border-radius: var(--radius-pill);
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 560;
+            font-family: var(--font-stack);
+            letter-spacing: -0.01em;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition-smooth);
+            box-shadow: 0 2px 12px rgba(0, 113, 227, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.7s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+        .btn-explore::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+            border-radius: var(--radius-pill);
+            pointer-events: none;
+        }
+        .btn-explore:hover {
+            background: var(--accent-hover);
+            box-shadow: 0 6px 24px rgba(0, 113, 227, 0.35), 0 2px 6px rgba(0, 0, 0, 0.10);
+            transform: translateY(-2px);
+            gap: 14px;
+        }
+        .btn-explore:active {
+            transform: scale(0.97);
+            transition: transform 0.1s ease;
+            box-shadow: 0 1px 6px rgba(0, 113, 227, 0.2);
+        }
+        .btn-explore i {
+            font-size: 1.2rem;
+            transition: transform var(--transition-smooth);
+        }
+        .btn-explore:hover i {
+            transform: translateX(3px);
+        }
+
+        /* ─── Modal Overlay ─────────────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: var(--bg-modal-overlay);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* ─── Modal Card ────────────────── */
+        .modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            max-width: 860px;
+            max-height: 82vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(30px) scale(0.94);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            border: 1px solid var(--border-card);
+        }
+        .modal-overlay.active .modal {
+            transform: translateY(0) scale(1);
+        }
+
+        /* ─── Modal Header ──────────────── */
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-title .count-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: var(--accent-subtle);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0;
+        }
+        .btn-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+        .btn-close:hover {
+            background: rgba(0, 0, 0, 0.08);
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        /* ─── Modal Body ────────────────── */
+        .modal-body {
+            padding: 8px 16px 20px;
+            overflow-y: auto;
+            flex: 1;
+            -webkit-overflow-scrolling: touch;
+        }
+        .modal-body::-webkit-scrollbar {
+            width: 5px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+        }
+
+        /* ─── Table ─────────────────────── */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: var(--radius-md);
+        }
+        .table-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+        .table-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.10);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 620px;
+        }
+        table thead th {
+            text-align: left;
+            padding: 14px 16px;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-tertiary);
+            border-bottom: 2px solid var(--border-subtle);
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+        }
+        table tbody td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            vertical-align: middle;
+            transition: background var(--transition-fast);
+        }
+        table tbody tr {
+            transition: background var(--transition-fast);
+        }
+        table tbody tr:hover {
+            background: rgba(0, 113, 227, 0.025);
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .col-name {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        .col-date {
+            white-space: nowrap;
+            color: var(--text-tertiary);
+            font-size: 0.84rem;
+            font-variant-numeric: tabular-nums;
+            font-family: 'SF Mono', 'Inter', monospace;
+            letter-spacing: 0;
+        }
+        .col-desc {
+            color: var(--text-secondary);
+            max-width: 260px;
+            line-height: 1.5;
+            font-size: 0.875rem;
+        }
+        .col-link,
+        .col-github {
+            text-align: center;
+            white-space: nowrap;
+        }
+        .icon-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: all var(--transition-fast);
+            background: transparent;
+        }
+        .icon-link:hover {
+            background: var(--accent-subtle);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+        .icon-link.github-link:hover {
+            background: #f0f0f0;
+            color: #1b1f23;
+        }
+
+        /* ─── Modal Footer ──────────────── */
+        .modal-footer {
+            padding: 14px 28px;
+            border-top: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+        .modal-footer-text {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            letter-spacing: -0.005em;
+        }
+        .modal-footer-text a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        .modal-footer-text a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ─── Loading & Error States ────── */
+        .state-message {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            text-align: center;
+            gap: 16px;
+        }
+        .state-message i {
+            font-size: 2.5rem;
+            color: var(--text-tertiary);
+        }
+        .state-message p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 450;
+        }
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-subtle);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ─── Footer ────────────────────── */
+        .site-footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+            animation: fadeInUp 0.7s 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) both;
+        }
+        .site-footer p {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            letter-spacing: -0.005em;
+        }
+        .site-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-fast);
+        }
+        .site-footer a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ─── Responsive ────────────────── */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 18px;
+            }
+            .header-brand {
+                font-size: 0.9rem;
+                gap: 7px;
+            }
+            .header-logo {
+                width: 28px;
+                height: 28px;
+                font-size: 0.7rem;
+            }
+            .header-link {
+                font-size: 0.78rem;
+            }
+            .main-container {
+                padding: 60px 16px 30px;
+                max-width: 100%;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            .hero-description {
+                font-size: 0.9rem;
+                max-width: 100%;
+                padding: 0 8px;
+            }
+            .btn-explore {
+                padding: 13px 26px;
+                font-size: 0.9rem;
+                gap: 8px;
+            }
+            .modal {
+                max-width: 100%;
+                max-height: 90vh;
+                border-radius: var(--radius-lg);
+            }
+            .modal-header {
+                padding: 16px 18px;
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            }
+            .modal-title {
+                font-size: 1.1rem;
+            }
+            .modal-body {
+                padding: 6px 8px 16px;
+            }
+            table {
+                font-size: 0.8rem;
+                min-width: 520px;
+            }
+            table thead th {
+                padding: 10px 10px;
+                font-size: 0.7rem;
+            }
+            table tbody td {
+                padding: 10px 10px;
+            }
+            .col-desc {
+                max-width: 160px;
+                font-size: 0.78rem;
+            }
+            .icon-link {
+                width: 32px;
+                height: 32px;
+                font-size: 1.1rem;
+            }
+            .modal-footer {
+                padding: 12px 16px;
+                border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            }
+            .modal-footer-text {
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            body {
+                padding: 12px;
+            }
+            .header {
+                padding: 10px 14px;
+            }
+            .header-link span {
+                display: none;
+            }
+            .header-link i {
+                font-size: 1.3rem;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .btn-explore {
+                padding: 12px 22px;
+                font-size: 0.85rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .modal {
+                max-height: 94vh;
+                border-radius: var(--radius-md);
+            }
+            .modal-header {
+                border-radius: var(--radius-md) var(--radius-md) 0 0;
+            }
+            .modal-footer {
+                border-radius: 0 0 var(--radius-md) var(--radius-md);
+            }
+            table {
+                min-width: 440px;
+                font-size: 0.75rem;
+            }
+            .col-desc {
+                max-width: 120px;
+                font-size: 0.72rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1>YABP</h1>
-    <p>Yet Another Boring Project — except it’s not.</p>
-  </header>
+    <!-- ─── Header ─────────────────────── -->
+    <header class="header">
+        <a href="https://yabp.netlify.app/" class="header-brand" aria-label="YABP Home">
+            <img src="logo.png" alt="YABP" class="header-logo">
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="header-link" title="Contribute on GitHub">
+            <i class="ri-github-fill"></i>
+            <span>Contribute</span>
+        </a>
+    </header>
 
-  <div class="container">
+    <!-- ─── Main Hero ──────────────────── -->
+    <main class="main-container">
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Official Project
+        </div>
+        <h1 class="hero-title">YABP<span class="accent-dot">•</span></h1>
+        <p class="hero-subtitle">Yet Another Boring Project</p>
+        <p class="hero-description">
+            A curated collection of projects inspired by
+            <strong>minimal design philosophy</strong> and
+            <strong>productivity</strong>. Built to help developers
+            improve, create meaningful tools, and ship better work
+            together.
+        </p>
+        <button class="btn-explore" id="btnExplore" aria-label="Explore all projects">
+            Explore Projects
+            <i class="ri-arrow-right-line"></i>
+        </button>
+    </main>
 
-    <section class="section">
-      <h2>What is YABP?</h2>
-      <p>
-        A collection of experimental systems, tools, and ideas. No templates. No unnecessary features.
-        Every project explores control, modularity, and simplicity.
-      </p>
-    </section>
+    <!-- ─── Footer ─────────────────────── -->
+    <footer class="site-footer">
+        <p>
+            Want to add your project?
+            <a href="https://github.com" target="_blank" rel="noopener">Contribute on GitHub</a>
+            by editing the <code style="font-size:0.78rem;background:rgba(0,0,0,0.04);padding:2px 6px;border-radius:4px;">projects.json</code> file.
+        </p>
+    </footer>
 
-    <section class="section">
-      <h2>Projects</h2>
-      <div id="projects" class="projects-grid"></div>
-    </section>
+    <!-- ─── Modal Overlay ──────────────── -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">
+                    <i class="ri-stack-line" style="font-size:1.3rem;"></i>
+                    Projects
+                    <span class="count-badge" id="projectCount">0</span>
+                </h2>
+                <button class="btn-close" id="btnClose" aria-label="Close modal">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
 
-    <section class="section">
-      <h2>Philosophy</h2>
-      <p>
-        Most apps are bloated. I build systems that start minimal and grow only when needed.
-        Control over convenience. Simplicity over noise.
-      </p>
-    </section>
+            <!-- Modal Body -->
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamically populated -->
+            </div>
 
-  </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <p class="modal-footer-text">
+                    ✦ Community-maintained collection ·
+                    <a href="https://github.com" target="_blank" rel="noopener">
+                        <i class="ri-github-fill" style="vertical-align:-1px;"></i> Add yours via GitHub
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
 
-  <footer>
-    © 2026 YABP — Built by Dheeraj Vaishnav
-  </footer>
+    <!-- ─── Scripts ────────────────────── -->
+    <script>
+        (function() {
+            // ── DOM Elements ─────────────────
+            const btnExplore = document.getElementById('btnExplore');
+            const btnClose = document.getElementById('btnClose');
+            const modalOverlay = document.getElementById('modalOverlay');
+            const modalBody = document.getElementById('modalBody');
+            const projectCount = document.getElementById('projectCount');
 
-  <script>
-    async function loadProjects() {
-      const res = await fetch('projects.json');
-      const data = await res.json();
+            // ── JSON Data URL ────────────────
+            // Point this to your projects.json file.
+            // For GitHub Pages, use a relative path like './projects.json'
+            // For raw GitHub content, use the raw URL:
+            // 'https://raw.githubusercontent.com/USER/REPO/main/projects.json'
+            const JSON_URL = './projects.json';
 
-      const container = document.getElementById('projects');
+            // ── State ────────────────────────
+            let projectsData = [];
+            let isLoading = false;
+            let hasLoaded = false;
+            let fetchError = null;
 
-      data.forEach(project => {
-        const card = document.createElement('div');
-        card.className = 'card';
+            // ── Fetch Projects ──────────────
+            async function fetchProjects() {
+                if (hasLoaded && projectsData.length > 0) return projectsData;
+                if (isLoading) return null;
 
-        card.innerHTML = `
-          <img src="${project.image}" alt="${project.name}" />
-          <div class="card-content">
-            <h3>${project.name}</h3>
-            <p>${project.description}</p>
-            <div class="tags">${project.stack}</div>
-            <a href="${project.link}" target="_blank">View Project →</a>
-          </div>
-        `;
+                isLoading = true;
+                fetchError = null;
 
-        container.appendChild(card);
-      });
-    }
+                try {
+                    const response = await fetch(JSON_URL, {
+                        cache: 'no-cache',
+                        headers: { 'Accept': 'application/json' }
+                    });
 
-    loadProjects();
-  </script>
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
 
+                    const data = await response.json();
+
+                    if (!data.projects || !Array.isArray(data.projects)) {
+                        throw new Error('Invalid JSON structure: expected { "projects": [...] }');
+                    }
+
+                    projectsData = data.projects;
+                    hasLoaded = true;
+                    return projectsData;
+
+                } catch (err) {
+                    console.error('Failed to fetch projects:', err);
+                    fetchError = err.message || 'Unknown error';
+                    return null;
+                } finally {
+                    isLoading = false;
+                }
+            }
+
+            // ── Render Table ────────────────
+            function renderTable(projects) {
+                if (!projects || projects.length === 0) {
+                    return `
+                                <div class="state-message">
+                                    <i class="ri-inbox-line"></i>
+                                    <p>No projects found yet.<br>Be the first to contribute!</p>
+                                </div>`;
+                }
+
+                const rows = projects.map((p, idx) => {
+                    const name = escapeHTML(p.name || 'Untitled');
+                    const date = escapeHTML(formatDate(p.date));
+                    const desc = escapeHTML(p.description || 'No description');
+                    const link = escapeHTML(p.link || '#');
+                    const github = escapeHTML(p.github || '#');
+                    const hasLink = p.link && p.link.trim() !== '';
+                    const hasGithub = p.github && p.github.trim() !== '';
+
+                    return `
+                                <tr>
+                                    <td class="col-name">${name}</td>
+                                    <td class="col-date">${date}</td>
+                                    <td class="col-desc">${desc}</td>
+                                    <td class="col-link">
+                                        ${hasLink ? `
+                                        <a href="${link}" target="_blank" rel="noopener" class="icon-link" title="Visit project" aria-label="Visit ${name}">
+                                            <i class="ri-external-link-line"></i>
+                                        </a>` : `
+                                        <span class="icon-link" style="color:#ccc;cursor:default;" title="No link available" aria-hidden="true">
+                                            <i class="ri-link-unlink"></i>
+                                        </span>`}
+                                    </td>
+                                    <td class="col-github">
+                                        ${hasGithub ? `
+                                        <a href="${github}" target="_blank" rel="noopener" class="icon-link github-link" title="View on GitHub" aria-label="GitHub repo for ${name}">
+                                            <i class="ri-github-fill"></i>
+                                        </a>` : `
+                                        <span class="icon-link" style="color:#ccc;cursor:default;" title="No GitHub repo" aria-hidden="true">
+                                            <i class="ri-github-fill"></i>
+                                        </span>`}
+                                    </td>
+                                </tr>`;
+                }).join('');
+
+                return `
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th>Link</th>
+                                            <th>GitHub</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${rows}
+                                    </tbody>
+                                </table>
+                            </div>`;
+            }
+
+            // ── Render Loading State ────────
+            function renderLoading() {
+                return `
+                            <div class="state-message">
+                                <div class="spinner"></div>
+                                <p>Loading projects…</p>
+                            </div>`;
+            }
+
+            // ── Render Error State ──────────
+            function renderError(message) {
+                return `
+                            <div class="state-message">
+                                <i class="ri-error-warning-line" style="color:#e74c3c;"></i>
+                                <p>Failed to load projects.<br><small style="color:var(--text-tertiary);">${escapeHTML(message)}</small></p>
+                                <button class="btn-explore" style="font-size:0.85rem;padding:10px 20px;margin-top:8px;" onclick="location.reload();">
+                                    <i class="ri-refresh-line"></i> Retry
+                                </button>
+                            </div>`;
+            }
+
+            // ── Open Modal ──────────────────
+            async function openModal() {
+                // Set loading state immediately
+                modalBody.innerHTML = renderLoading();
+                projectCount.textContent = '...';
+                modalOverlay.classList.add('active');
+                modalOverlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+
+                // Fetch data
+                const projects = await fetchProjects();
+
+                if (projects) {
+                    modalBody.innerHTML = renderTable(projects);
+                    projectCount.textContent = projects.length;
+                } else if (fetchError) {
+                    modalBody.innerHTML = renderError(fetchError);
+                    projectCount.textContent = '!';
+                } else {
+                    // Loading took too long or cancelled — keep spinner
+                    // Check again after a moment
+                    setTimeout(() => {
+                        if (modalBody.querySelector('.spinner') && !hasLoaded && !fetchError) {
+                            modalBody.innerHTML = renderError('Request timed out. Please try again.');
+                            projectCount.textContent = '!';
+                        }
+                    }, 15000); // 15-second fallback
+                }
+            }
+
+            // ── Close Modal ─────────────────
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                modalOverlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                // Focus back on the explore button
+                btnExplore.focus();
+            }
+
+            // ── Event Listeners ────────────
+            btnExplore.addEventListener('click', openModal);
+            btnClose.addEventListener('click', closeModal);
+
+            // Close on overlay click (outside modal)
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ── Utility Functions ───────────
+            function escapeHTML(str) {
+                if (!str) return '';
+                const div = document.createElement('div');
+                div.textContent = str;
+                return div.innerHTML;
+            }
+
+            function formatDate(dateStr) {
+                if (!dateStr) return '—';
+                try {
+                    const date = new Date(dateStr);
+                    if (isNaN(date.getTime())) return dateStr;
+                    // Format: "Mar 15, 2024"
+                    return date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                } catch {
+                    return dateStr;
+                }
+            }
+
+            // ── Pre-fetch on page load (optional, for faster modal open) ──
+            // Uncomment the line below to pre-fetch when the page loads:
+            // fetchProjects();
+
+            console.log('%c YABP %c Yet Another Boring Project %c Ready.',
+                'font-weight:700;font-size:1.1rem;color:#1d1d1f;',
+                'color:#6e6e73;',
+                'color:#0071e3;');
+            console.log('%c📂 JSON source:%c ' + JSON_URL,
+                'font-weight:600;',
+                'font-weight:400;color:#86868b;');
+            console.log('%c💡 Tip: Edit projects.json on GitHub to add your own project!',
+                'color:#6e6e73;font-style:italic;');
+        })();
+    </script>
 </body>
 </html>
-
-
-

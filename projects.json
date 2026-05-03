@@ -1,16 +1,18 @@
-[
-  {
+{
+  "projects": [
+    {
     "name": "Empty",
+    "date": "2026-03-25",
     "description": "A plugin-first system where nothing exists by default.",
-    "stack": "JavaScript, Modular System",
     "link": "https://emptyweb.netlify.app/",
-    "image": "images/empty.png"
+    "github": "https://github.com/dheeraz101/Empty"
   },
   {
-    "name": "AuraSelect",
-    "description": "A modern selection and UI interaction experiment.",
-    "stack": "HTML, CSS, JS",
-    "link": "https://auraselect.netlify.app/",
-    "image": "images/aura.png"
+    "name": "OriginJS",
+    "date": "2024-12-30",
+    "description": "lightweight, zero-config JavaScript library that visually exposes content origin metadata",
+    "link": "https://originjs.netlify.app/",
+    "github": "https://github.com/dheeraz101/OriginJS"
   }
-]
+  ]
+}
