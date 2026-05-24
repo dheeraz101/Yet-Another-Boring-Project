@@ -41,6 +41,13 @@
     "description": "CyberSuraksha is an interactive, simulation-first cyber safety web app focused on real scam patterns in India",
     "link": "https://cybersurakshaa.dpdns.org/",
     "github": "https://github.com/dheeraz101/CyberSuraksha"
+  },
+      {
+    "name": "NoteKar",
+    "date": "2026-05-23",
+    "description": "NoteKar is a simple, lightweight logging app that helps you log time, date, and notes in a clean interface.",
+    "link": "https://notekarapp.vercel.app/",
+    "github": "https://github.com/dheeraz101/NoteKar"
   }
   ]
 }
