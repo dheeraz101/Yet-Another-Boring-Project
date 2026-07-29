@@ -832,8 +832,8 @@ pre::-webkit-scrollbar-thumb {
     inset: 0;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -852,48 +852,70 @@ pre::-webkit-scrollbar-thumb {
     background: var(--bg-card);
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-card);
-    padding: 32px;
-    max-width: 460px;
+    padding: 36px 28px;
+    max-width: 440px;
     width: 100%;
     text-align: center;
     box-shadow: var(--shadow-lg);
     transform: scale(0.95);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .verify-modal.active .verify-card {
     transform: scale(1);
 }
 
-.verify-badge-icon {
-    font-size: 3rem;
+.verify-brand-logo {
+    height: 56px;
+    width: auto;
     margin-bottom: 16px;
-    display: inline-block;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.04));
+    transition: transform 0.3s ease;
+}
+.verify-brand-logo:hover {
+    transform: scale(1.05);
 }
 
-.verify-badge-icon.success {
+.verify-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.verify-status-badge.success {
+    background: rgba(52, 199, 89, 0.12);
     color: #34c759;
-    filter: drop-shadow(0 0 10px rgba(52, 199, 89, 0.2));
+    border: 1px solid rgba(52, 199, 89, 0.15);
 }
 
-.verify-badge-icon.error {
+.verify-status-badge.error {
+    background: rgba(255, 59, 48, 0.12);
     color: #ff3b30;
-    filter: drop-shadow(0 0 10px rgba(255, 59, 48, 0.2));
+    border: 1px solid rgba(255, 59, 48, 0.15);
 }
 
 .verify-title {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     color: var(--text-primary);
 }
 
 .verify-message {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
     line-height: 1.5;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    width: 100%;
 }
 
 .verify-url-text {
@@ -901,11 +923,12 @@ pre::-webkit-scrollbar-thumb {
     background: var(--bg-primary);
     padding: 6px 10px;
     border-radius: var(--radius-sm);
-    font-size: 0.76rem;
+    font-size: 0.75rem;
     display: block;
     word-break: break-all;
-    margin-top: 8px;
+    margin-top: 10px;
     border: 1px solid var(--border-subtle);
+    color: var(--text-tertiary);
 }
 
 /* ─── Footer ───────────────────────── */

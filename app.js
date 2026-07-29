@@ -275,15 +275,19 @@
             return link === cleanVerifyUrl || github === cleanVerifyUrl;
         });
 
-        const iconEl = verifyModal.querySelector('.verify-badge-icon');
+        const badgeEl = document.getElementById('verifyStatusBadge');
+        const badgeIcon = badgeEl.querySelector('i');
+        const badgeText = badgeEl.querySelector('span');
         const titleEl = verifyModal.querySelector('.verify-title');
         const messageEl = verifyModal.querySelector('.verify-message');
         const closeBtn = document.getElementById('closeVerifyBtn');
 
         if (match) {
             // Verification Success State
-            iconEl.className = 'verify-badge-icon success ri-checkbox-circle-fill';
-            titleEl.textContent = 'Project Verified';
+            badgeEl.className = 'verify-status-badge success';
+            badgeIcon.className = 'ri-checkbox-circle-fill';
+            badgeText.textContent = 'Verified YABP Project';
+            titleEl.textContent = 'Verification Successful';
             messageEl.innerHTML = `
                 <strong>${escapeHTML(match.name)}</strong> is officially verified as part of the YABP Initiative. It conforms to our minimalist aesthetics, high utility, and privacy standards.
                 <span class="verify-url-text">${escapeHTML(verifyUrl)}</span>
@@ -301,8 +305,10 @@
             }, 600);
         } else {
             // Verification Failed State
-            iconEl.className = 'verify-badge-icon error ri-close-circle-fill';
-            titleEl.textContent = 'Verification Failed';
+            badgeEl.className = 'verify-status-badge error';
+            badgeIcon.className = 'ri-close-circle-fill';
+            badgeText.textContent = 'Verification Failed';
+            titleEl.textContent = 'Unregistered Project';
             messageEl.innerHTML = `
                 The project at the URL below is not listed in the official YABP directory.
                 <span class="verify-url-text">${escapeHTML(verifyUrl)}</span>
@@ -348,21 +354,62 @@
         }
     }
 
-    // Copy Snippets Helper
-    window.copyCode = function(elementId, btnElement) {
+    // Robust copy helper with insecure context fallback (for HTTP/iframe previews)
+    function copyText(elementId, btnElement) {
         const codeNode = document.getElementById(elementId);
         const textToCopy = codeNode.textContent;
         
-        navigator.clipboard.writeText(textToCopy).then(() => {
+        function updateButtonSuccess() {
             const originalHTML = btnElement.innerHTML;
-            btnElement.innerHTML = `<i class="ri-check-line" style="color: #4caf50;"></i> Copied!`;
+            btnElement.innerHTML = `<i class="ri-check-line" style="color: #34c759;"></i> Copied!`;
             setTimeout(() => {
                 btnElement.innerHTML = originalHTML;
             }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy text: ', err);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(textToCopy).then(updateButtonSuccess).catch(err => {
+                console.warn('Modern copy failed, trying fallback: ', err);
+                fallbackCopy(textToCopy);
+            });
+        } else {
+            fallbackCopy(textToCopy);
+        }
+
+        function fallbackCopy(text) {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                if (successful) {
+                    updateButtonSuccess();
+                } else {
+                    console.error('Fallback copy command failed.');
+                }
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+            }
+        }
+    }
+
+    // Dynamic Copy Button binding (prevents inline onclick execution CSP block)
+    const copyButtons = document.querySelectorAll('.code-btn-copy');
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-copy-target');
+            if (targetId) {
+                copyText(targetId, btn);
+            }
         });
-    };
+    });
 
     // Search Clear Button Trigger
     searchInput.addEventListener('input', () => {

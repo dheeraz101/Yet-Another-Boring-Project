@@ -1,5 +1,9 @@
 # YABP: Yet Another Boring Project
 
+<p align="center">
+  <img src="og-image.jpg" alt="YABP Initiative Banner" width="100%" />
+</p>
+
 Curated ecosystem of minimalist, highly reliable, and distraction-free open-source developer tools.
 
 [![Ecosystem Directory](https://img.shields.io/badge/YABP-Ecosystem-0071e3?style=flat-square)](https://yabp.netlify.app)

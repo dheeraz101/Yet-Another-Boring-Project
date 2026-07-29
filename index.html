@@ -182,7 +182,7 @@
                         <div class="code-block-wrapper">
                             <div class="code-header">
                                 <span>README HTML Badge (Mandatory for Repos)</span>
-                                <button class="code-btn-copy" onclick="copyCode('code-html', this)" type="button">
+                                <button class="code-btn-copy" data-copy-target="code-html" type="button">
                                     <i class="ri-file-copy-line"></i> Copy
                                 </button>
                             </div>
@@ -195,7 +195,7 @@
                         <div class="code-block-wrapper">
                             <div class="code-header">
                                 <span>README Markdown Badge</span>
-                                <button class="code-btn-copy" onclick="copyCode('code-md', this)" type="button">
+                                <button class="code-btn-copy" data-copy-target="code-md" type="button">
                                     <i class="ri-file-copy-line"></i> Copy
                                 </button>
                             </div>
@@ -206,7 +206,7 @@
                         <div class="code-block-wrapper">
                             <div class="code-header">
                                 <span>Direct Verification Link (For Apps/Sites)</span>
-                                <button class="code-btn-copy" onclick="copyCode('code-direct', this)" type="button">
+                                <button class="code-btn-copy" data-copy-target="code-direct" type="button">
                                     <i class="ri-file-copy-line"></i> Copy
                                 </button>
                             </div>
@@ -224,8 +224,16 @@
     <!-- ─── Verification Modal Overlay ───── -->
     <div class="verify-modal" id="verifyModal" role="dialog" aria-modal="true" aria-labelledby="verifyTitle">
         <div class="verify-card">
-            <i class="verify-badge-icon ri-checkbox-circle-fill" aria-hidden="true"></i>
-            <h2 class="verify-title" id="verifyTitle">Project Verified</h2>
+            <!-- Brand Logo at Top -->
+            <img src="logo.png" alt="YABP Logo" class="verify-brand-logo">
+            
+            <!-- Status Badge capsule -->
+            <div class="verify-status-badge success" id="verifyStatusBadge">
+                <i class="ri-checkbox-circle-fill" aria-hidden="true"></i>
+                <span>Verified YABP Project</span>
+            </div>
+            
+            <h2 class="verify-title" id="verifyTitle">Project Verification</h2>
             <div class="verify-message">
                 <!-- Javascript will load verification message here -->
             </div>
