@@ -1,69 +1,76 @@
-# Contributing to Yet Another Boring Project (YABP)
+# Contributing to YABP
 
-Thank you for your interest in contributing to YABP! We want to keep this directory curated with high-quality, minimal, and productive projects that help developers.
+Thank you for your interest in contributing. We curate this directory with high-quality, minimal developer tools that prioritize utility and design.
 
-By contributing a project, you agree that it fits our philosophy and that you will maintain its quality.
+By submitting a project, you agree that it fits our design criteria and that you will actively maintain it.
 
 ---
 
-## How to List Your Project
+## Submission Process
 
-We use a simple JSON-based directory. To add your project to the landing page, follow these steps:
+### 1. Fork and Clone
+Fork this repository to your GitHub profile and clone it locally.
 
-### Step 1: Fork and Clone the Repository
-Fork this repository to your own GitHub account, then clone it locally.
-
-### Step 2: Edit `projects.json`
-Open the [projects.json](file:///d:/Github_Projects/Yet-Another-Boring-Project/projects.json) file and add your project inside the `"projects"` array. Make sure it follows this structure:
+### 2. Update projects.json
+Open [projects.json](file:///d:/Github_Projects/Yet-Another-Boring-Project/projects.json) and add your project listing to the `projects` array:
 
 ```json
 {
   "name": "Your Project Name",
-  "date": "2026-07-29",
-  "description": "A clear, single-sentence explanation of what your project does and who it's for.",
+  "date": "2026-07-30",
+  "description": "A clear, single-sentence explanation of what your project does.",
   "link": "https://your-live-demo-or-website.com",
   "github": "https://github.com/yourusername/your-repository"
 }
 ```
 
-#### Field Specifications:
-- `name` (string): The title of your project. Keep it concise.
-- `date` (string): The date you are submitting or the date of release in `YYYY-MM-DD` format.
-- `description` (string): A short summary. Limit to 120 characters. Avoid clickbait or fluff.
-- `link` (string): A link to the live demo, landing page, or Chrome Web Store. Use an empty string `""` if not applicable.
-- `github` (string): A link to the GitHub repository. Use an empty string `""` if not applicable.
+#### Fields:
+*   `name` (string): Title of your project. Keep it short.
+*   `date` (string): Date of submission in `YYYY-MM-DD` format.
+*   `description` (string): Summary under 150 characters. Avoid fluff or clickbait.
+*   `link` (string): Live application link. Use an empty string if not applicable.
+*   `github` (string): GitHub repository link. Use an empty string if not applicable.
 
-### Step 3: Verify the File Structure
-Your PR will be verified automatically by a GitHub action. You can run the validation script locally to check for errors before committing:
-```bash
-node .github/scripts/verify-projects.js
-```
+### 3. Add Logo Badge (2-Way Verification)
+To establish trust, you must link back to YABP. By appending your project's URL, the YABP site will dynamically verify your listing when clicked.
 
-### Step 4: Include the YABP Logo Badge
-Every project that joins the YABP Initiative **must include the official YABP logo badge** in its main repository `README.md`. 
+You can instantly generate your custom badge codes using our interactive **Badge & Link Generator** on the website: [yabp.netlify.app](https://yabp.netlify.app).
 
-Choose one of the formats below to paste at the top of your README file:
+If you copy them manually, replace `YOUR_PROJECT_URL` with your exact live project or GitHub URL:
 
-#### Option A: HTML Logo Link (Recommended, looks clean)
+#### Option A: HTML Logo Link (Recommended, mandatory for GitHub)
 ```html
-<a href="https://yabp.netlify.app">
+<a href="https://yabp.netlify.app/?verify=YOUR_PROJECT_URL">
   <img src="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/logo.png" width="48" height="48" alt="YABP Initiative Logo" style="display: inline-block; vertical-align: middle;" />
 </a>
 ```
 
 #### Option B: Markdown Logo Link
 ```markdown
-[![YABP Initiative Logo](https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/logo.png)](https://yabp.netlify.app)
+[![YABP Initiative Logo](https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/logo.png)](https://yabp.netlify.app/?verify=YOUR_PROJECT_URL)
 ```
+
+#### Option C: Direct Verification Link (Optional for App UI/Websites)
+If you do not want the logo badge on your app UI, you can link directly to:
+```
+https://yabp.netlify.app/?verify=YOUR_PROJECT_URL
+```
+
+### 4. PR Verification
+Test your JSON formatting locally before committing:
+```bash
+node .github/scripts/verify-projects.js
+```
+Push changes and open a Pull Request. Automated CI checks will validate your JSON structure.
 
 ---
 
-## Submission Guidelines & Quality Checklist
+## Design and Quality Guidelines
 
-To maintain a premium collection, we vet all submissions. We will reject projects that do not meet these standards:
+We manually review all submissions and will reject projects that fall short of these principles:
 
-- **Minimalist Aesthetic:** Inspired by Apple's Human Interface Guidelines (HIG). Uncluttered layout, clean typography (e.g., Inter, SF Pro, system fonts), curated colors, and zero distraction.
-- **Utility & Productivity:** The tool must serve a clear purpose, improve a workflow, or help developers create something meaningful. No joke projects or cookie-cutter tutorial forks.
-- **Zero Placeholders:** Your project must be fully functioning. Do not submit sites with "Coming Soon" blocks or unfinished features.
-- **Privacy & Safety:** No tracking, ad-heavy pages, or malicious client-side scripting.
-- **Licensing:** Your project repository must include a valid open-source license (such as MIT, Apache-2.0, or GPL).
+*   **Minimalist Design**: Clean typography, high contrast, balanced grid structures, and zero visual clutter (inspired by Apple HIG).
+*   **Utility Focus**: Solves a real problem, saves time, or increases focus. No basic tutorial copies or joke repos.
+*   **Production Ready**: No broken links, "coming soon" placeholders, or incomplete components.
+*   **Privacy First**: No third-party trackers, ad injection, or client-side analytics scripts.
+*   **Open Source**: Repository must have an active open-source license.

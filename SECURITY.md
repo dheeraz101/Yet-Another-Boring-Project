@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-Only the latest version of the repository is actively supported with security updates.
+We actively support the latest version of this repository with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -10,17 +10,17 @@ Only the latest version of the repository is actively supported with security up
 
 ## Reporting a Vulnerability
 
-We take the security of Yet Another Boring Project (YABP) and its community projects seriously. If you find a security vulnerability, please report it immediately.
+We value the security of the YABP ecosystem. If you discover a vulnerability, please report it immediately.
 
-Do **NOT** open a public issue for security-related bugs. Instead, please report vulnerabilities by email to:
+Do not open public GitHub issues for security bugs. Please email reports directly to:
 
-* **Security Contact:** dheeraz.workspace@gmail.com (or open a private security advisory on GitHub if applicable)
+*   **Security Contact**: dheeraz.workspace@gmail.com
 
-Please include the following information in your report:
-- A detailed description of the vulnerability.
-- Steps to reproduce the issue.
-- Any potential impact on users or the repository.
+In your report, please include:
+*   A description of the vulnerability.
+*   Steps to reproduce the issue.
+*   Impact details for users.
 
-### Our Commitment
+### Response Commitment
 
-We will acknowledge your report within 48 hours and work to provide a fix as quickly as possible. Once the issue is resolved, we will publish a security advisory to inform the community.
+We will acknowledge your report within 48 hours and work on a resolution promptly. Once fixed, we will publish an advisory for the community.
