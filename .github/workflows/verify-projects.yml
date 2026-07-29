@@ -1,0 +1,29 @@
+name: Verify Projects Database
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'projects.json'
+      - '.github/workflows/verify-projects.yml'
+      - '.github/scripts/verify-projects.js'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'projects.json'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Run Project JSON Validation
+      run: node .github/scripts/verify-projects.js

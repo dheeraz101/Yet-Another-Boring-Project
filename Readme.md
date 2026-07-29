@@ -1,168 +1,93 @@
 # YABP — Yet Another Boring Project
 
-**A curated, community-driven collection of projects inspired by minimal design philosophy and productivity.**
-*Built to help developers improve, create meaningful tools, and ship better work — together.*
+**A curated, community-driven collection of projects inspired by minimal design philosophy, high utility, and productivity.**
+*Providing unbranded, minimal projects with a professional community brand umbrella. Built to help developers improve, create meaningful tools, and ship better work — together.*
 
-[![Official Project](https://img.shields.io/badge/YABP-Official-0071e3?style=flat-square\&logo=data\:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVQ4y2Ng+M/A8J+B4T8D46n///8/ZWBguMDw//8LBgYGJgYmBoZ/DAz/GZgYGP4zMDIwMDAwMDIwMjAyMDIyMDIxMjIwMDIwMzEwMDAzMDAwMDIwMDIwMDAwMDAxMDIwMDAwMDAyMDAyMDAwMDMyMDIwMDAyMTAyMDAwMDAxMDIwMDAwMDAyMDAwMDAwMDAwMDAwQAEkYgKQAAAAASUVORK5CYII=)](https://yabp.netlify.app)
+[![Official Project](https://img.shields.io/badge/YABP-Official-0071e3?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA6klEQVQ4y2Ng+M/A8J+B4T8D46n///8/ZWBguMDw//8LBgYGJgYmBoZ/DAz/GZgYGP4zMDIwMDAwMDIwMjAyMDIyMDIxMjIwMDIwMzEwMDAzMDAwMDIwMDIwMDAwMDAxMDIwMDAwMDAyMDAyMDAwMDMyMDIwMDAyMTAyMDAwMDAxMDIwMDAwMDAyMDAwMDAwMDAwMDAwQAEkYgKQAAAAASUVORK5CYII=)](https://yabp.netlify.app)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/00000000-0000-0000-0000-000000000000/deploy-status)](https://app.netlify.com/sites/yabp/deploys)
 
 ---
 
-## ✨ About
+## ✨ About YABP
 
-YABP is an **official open-source hub** that lists projects adhering to a **minimal, productive, and aesthetic** philosophy—
-inspired by Apple’s design principles.
+YABP is an **official open-source initiative** that lists projects adhering to a **minimal, productive, and aesthetic** philosophy—deeply inspired by Apple’s design principles. The brand umbrella provides developers of minimal projects with a professional community brand, giving them a unified home.
 
-The site itself is a single-page experience with:
+The initiative currently includes several popular open-source projects, such as:
+- **Thoughts** — A distraction-free micro-journaling space.
+- **NoteKar** — A clean, lightweight logging app that tracks notes and dates.
+- ...and many other minimal tools created by the community!
 
-* A beautiful card-based layout
-* Dark/light mode
-* A dynamic modal that displays community projects from a single `projects.json` file
-
-🔗 **Live site:** [https://yabp.netlify.app](https://yabp.netlify.app)
+🔗 **Live Showcase Directory:** [https://yabp.netlify.app](https://yabp.netlify.app)
 
 ---
 
 ## 🧩 Features
 
-* **Minimal UI** — Card-centric design, clean typography, subtle animations
-* **Dark & Light Mode** — Toggle by clicking the logo (preference saved locally)
-* **Dynamic Project Table** — Powered by `projects.json`
-* **Remix Icons** — Crisp, modern icon set
-* **Fully Responsive** — Works across desktop, tablet, and mobile
-* **Easy Contribution** — Just edit one JSON file
+- **Apple HIG-Inspired UI** — Card-centric, minimalist design system, clean typography, and responsive grid layouts.
+- **Subtle Interactions** — Glassmorphism headers, smooth hover animations, and intuitive dark/light mode toggles.
+- **Live Search & Filter** — Instantly search and sort through community-submitted projects on the site.
+- **Automated Verification** — Pull Requests are automatically verified using a GitHub Action to validate the structure of `projects.json`.
+- **Netlify Build Efficiency** — Smart build-ignoring configuration keeps Netlify from rebuilding when only documentation or JSON records change, preserving resources.
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
+- [index.html](file:///d:/Github_Projects/Yet-Another-Boring-Project/index.html) — Main showcase website.
+- [projects.json](file:///d:/Github_Projects/Yet-Another-Boring-Project/projects.json) — Database of all listed community projects.
+- [logo.png](file:///d:/Github_Projects/Yet-Another-Boring-Project/logo.png) — Official YABP Logo (512x512 PNG).
+- [favicon.ico](file:///d:/Github_Projects/Yet-Another-Boring-Project/favicon.ico) — Official favicon.
+- [LICENSE](file:///d:/Github_Projects/Yet-Another-Boring-Project/LICENSE) — MIT License.
+- [SECURITY.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/SECURITY.md) — Security policy and vulnerability reporting.
+- [CONTRIBUTING.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/CONTRIBUTING.md) — Contribution workflow and quality checklist.
+- [TERMS_OF_USE.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/TERMS_OF_USE.md) — Brand guidelines and community directory terms.
+
+---
+
+## 🚀 How to List Your Project
+
+We welcome **well-crafted, thoughtful projects** that share our aesthetic and utility goals.
+
+To list your project:
+1. **Fork** this repository.
+2. Edit [projects.json](file:///d:/Github_Projects/Yet-Another-Boring-Project/projects.json) and add your project detail to the `"projects"` array:
+   ```json
+   {
+     "name": "Your Project Name",
+     "date": "2026-07-29",
+     "description": "Short, specific sentence describing what the project solves.",
+     "link": "https://your-live-link.com",
+     "github": "https://github.com/username/repo"
+   }
+   ```
+3. Commit your changes and open a **Pull Request**. The automated GitHub Action workflow will verify your JSON syntax.
+
+For more details, check out the full [CONTRIBUTING.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/CONTRIBUTING.md).
+
+---
+
+## 🎨 Branding Requirement (YABP Logo Badge)
+
+To help build the community network, all projects that are part of the YABP brand umbrella **must include the YABP logo badge** in their repository READMEs.
+
+Please copy and paste one of these snippets at the top of your `README.md` file:
+
+### Option 1: Clean HTML (Recommended)
+```html
+<a href="https://yabp.netlify.app">
+  <img src="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/logo.png" width="48" height="48" alt="YABP Initiative Logo" style="display: inline-block; vertical-align: middle;" />
+</a>
 ```
-yabp/
-├── index.html        # Main site
-├── projects.json     # Community projects database
-├── logo.png          # Official YABP logo (512×512)
-├── favicon.ico       # Official favicon
-└── README.md         # This file
+
+### Option 2: Markdown Logo Link
+```markdown
+[![YABP Initiative Logo](https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/logo.png)](https://yabp.netlify.app)
 ```
 
 ---
 
-## 🚀 How to Contribute a Project
+## ⚖️ License & Terms
 
-We welcome **well-crafted, thoughtful projects** aligned with our philosophy:
-
-> *“Minimal design, high utility, and genuine productivity enhancement.”*
-
-### 1. Fork this repository
-
----
-
-### 2. Edit `projects.json`
-
-Add your project inside the `"projects"` array:
-
-```json
-{
-  "name": "Your Project Name",
-  "date": "2026-05-20",
-  "description": "A short, one-line description of what it does and why it's useful.",
-  "link": "https://your-demo-or-live-url.com",
-  "github": "https://github.com/you/your-repo"
-}
-```
-
-#### Field Guidelines
-
-* **name** — Keep it short and clear
-* **date** — Use ISO format (`YYYY-MM-DD`)
-* **description** — One sentence, be specific
-* **link** — Live URL (or `""` if none)
-* **github** — Repo URL (or `""` if none)
-
----
-
-### 3. Quality Guidelines
-
-We only accept projects that:
-
-* ✅ Are fully functional (no placeholders or “coming soon”)
-* ✅ Have a clean README
-* ✅ Show thoughtful design (not a basic tutorial clone)
-* ✅ Solve a real problem (even a small one)
-* ✅ Use proper licensing and attribution
-
-❌ We reject:
-
-* Spam
-* Empty shells
-* Poorly described projects
-* Anything that wastes user time
-
----
-
-### 4. Open a Pull Request
-
-* Use a clear title:
-  `Add project: [Your Project Name]`
-* Explain what your project does and why it fits YABP
-* Wait for review (improvements may be suggested)
-
----
-
-## 🎨 Official Assets
-
-All contributors are encouraged to use YABP branding.
-
-### Logo → `logo.png`
-
-Use for:
-
-* Project headers
-* GitHub previews
-* “Part of YABP” badges
-
-### Favicon → `favicon.ico`
-
-Use for:
-
-* Browser tabs
-* Bookmarks
-
-📥 Download directly from this repository and place in your project root.
-
----
-
-## 💻 Tech Stack
-
-* HTML5 / CSS3 (custom properties, animations, backdrop blur)
-* Remix Icons (CDN)
-* Vanilla JavaScript (no frameworks)
-* Inter (Google Fonts)
-* Netlify (hosting & deployment)
-
----
-
-## 🧠 Philosophy
-
-> “Boring” doesn’t mean useless.
-> It means reliable, focused, and distraction-free.
-
-We celebrate tools that:
-
-* Do one thing extremely well
-* Look clean and intentional
-* Respect the user’s time and attention
-
-If your project feels at home in a calm, productive workspace—it belongs here.
-
----
-
-## 📝 License
-
-This repository is licensed under the **MIT License**.
-
-All listed projects retain their own licenses — check their respective repositories.
-
----
-
-**Made with ❤️ by the YABP community.**
+- This directory and infrastructure are licensed under the **MIT License**.
+- Listed projects retain their own licensing (refer to their respective repositories).
+- By participating, you agree to our **[Terms of Use](file:///d:/Github_Projects/Yet-Another-Boring-Project/TERMS_OF_USE.md)**.
