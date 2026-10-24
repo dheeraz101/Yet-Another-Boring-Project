@@ -16,13 +16,16 @@ The YABP logo and name signify a dedication to clean, distraction-free utility.
 
 ## 2. Directory Curation Policies
 
-*   **Review and Acceptance**: Curation is managed manually. We reserve the right to decline any submission pull request that does not meet our utility and minimalist design standards.
-*   **Listing Maintenance**: We reserve the right to remove a registry listing at any time without notice if the project:
+*   **Initial Stage & Manual Verification**: YABP is currently in its initial stage. Submissions take longer to appear in the directory because each tool is personally and manually checked, tested, and verified by maintainers prior to inclusion.
+*   **Curated Showcase & Discretionary Removal**: Only the best, highest-utility projects are retained. We reserve the absolute right to decline submissions or remove any listing at any time without prior notice if the project:
     *   Becomes broken, abandoned, or offline.
-    *   Violates YABP aesthetic design principles.
+    *   Violates YABP aesthetic design principles or adds excessive bloat.
     *   Introduces trackers, advertisements, or telemetry.
-    *   Deletes its open-source license.
-    *   Fails to include the YABP logo badge in its readme.
+    *   Deletes or invalidates its open-source license.
+    *   Fails to maintain the YABP logo badge in its readme.
+*   **Propagation & CDN Window**: Once approved and merged, global CDN cache invalidation typically takes 5-10 minutes to synchronize.
+
+Read the official web version at [yabp.netlify.app/terms.html](https://yabp.netlify.app/terms.html).
 
 ## 3. Disclaimers
 
@@ -36,3 +39,4 @@ We expect all participating developers to:
 *   Maintain collaborative communication on issues and PRs.
 *   Respect user privacy and licensing attributions.
 *   Avoid adding malicious, scam, or tracking systems to member tools.
+*   **Support & Contact**: Reach maintainers at [yabp.support@gmail.com](mailto:yabp.support@gmail.com).

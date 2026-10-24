@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIT License • YABP</title>
+
+    <!-- Meta Tags for Community Showcase & SEO -->
+    <meta name="description" content="Official MIT License, permissions, conditions, and licensing requirements for Yet Another Boring Project (YABP).">
+    <meta name="keywords" content="YABP, MIT License, open source license, developer tools, software rights, copyright">
+    <meta name="author" content="YABP Initiative">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yabp.netlify.app/license.html">
+    <meta property="og:title" content="MIT License • YABP">
+    <meta property="og:description" content="Official MIT License terms and open-source permissions for the YABP initiative.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yabp.netlify.app/license.html">
+    <meta property="twitter:title" content="MIT License • YABP">
+    <meta property="twitter:description" content="Official MIT License terms and open-source permissions for the YABP initiative.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Fonts (Inter for clean SF Pro styling) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Synchronous Theme Pre-Init to eliminate FOUC (Apple HIG) -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('yabp-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ─── Navbar ───────────────────────── -->
+    <header class="navbar">
+        <a href="index.html" class="nav-brand" aria-label="Go to YABP home">
+            <img src="logo.png" alt="YABP Logo" class="nav-logo">
+            <span>YABP•</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="index.html#gallery" class="nav-link">Showcase</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="contributing.html" class="nav-link">Contributing</a>
+            <a href="security.html" class="nav-link">Security</a>
+            <a href="license.html" class="nav-link active" aria-current="page">License</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+                <i class="ri-moon-line"></i>
+                <i class="ri-sun-line"></i>
+            </button>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="btn-contribute-nav" aria-label="View on GitHub">
+                <i class="ri-github-fill"></i>
+                <span>GitHub</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+                <i class="ri-menu-line menu-open-icon"></i>
+                <i class="ri-close-line menu-close-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── Mobile Navigation Drawer (Apple HIG) ───── -->
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-drawer-content">
+            <a href="index.html#gallery" class="mobile-drawer-link">
+                <i class="ri-apps-2-line"></i>
+                <span>Showcase</span>
+            </a>
+            <a href="terms.html" class="mobile-drawer-link">
+                <i class="ri-scales-3-line"></i>
+                <span>Terms of Use</span>
+            </a>
+            <a href="contributing.html" class="mobile-drawer-link">
+                <i class="ri-git-pull-request-line"></i>
+                <span>Contributing Guidelines</span>
+            </a>
+            <a href="security.html" class="mobile-drawer-link">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Security Policy</span>
+            </a>
+            <a href="license.html" class="mobile-drawer-link active">
+                <i class="ri-copyright-line"></i>
+                <span>MIT License</span>
+            </a>
+            <div class="mobile-drawer-divider"></div>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="mobile-drawer-link github">
+                <i class="ri-github-fill"></i>
+                <span>GitHub Repository</span>
+                <i class="ri-external-link-line" style="font-size: 0.8rem; margin-left: auto;"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ─── Main Content Container ──────── -->
+    <main class="doc-container">
+
+        <!-- Back to Showcase Breadcrumb -->
+        <a href="index.html" class="doc-back-link">
+            <i class="ri-arrow-left-s-line"></i>
+            <span>Back to Showcase</span>
+        </a>
+
+        <!-- Document Header -->
+        <header class="doc-header">
+            <div class="doc-badge">
+                <i class="ri-copyright-line"></i>
+                <span>Open Source License</span>
+            </div>
+            <h1 class="doc-title">MIT License & Terms</h1>
+            <p class="doc-subtitle">
+                The Yet Another Boring Project ecosystem and showcase platform are released as open-source software under the permissive MIT License.
+            </p>
+            <div class="doc-meta">
+                <span><i class="ri-shield-star-line"></i> OSI Approved</span>
+                <span><i class="ri-scales-3-line"></i> Permissive Software License</span>
+                <span><i class="ri-group-line"></i> YABP Initiative &amp; Contributors</span>
+            </div>
+        </header>
+
+        <!-- Mandatory Developer Agreement Callout -->
+        <div class="agreement-callout">
+            <div class="agreement-icon">
+                <i class="ri-file-shield-line"></i>
+            </div>
+            <div class="agreement-content">
+                <h4>Mandatory Developer Agreement</h4>
+                <p>
+                    All member projects submitted to the directory must maintain an active, valid open-source license. By listing your project, you agree to our <a href="terms.html">Terms of Use</a> and affirm that your software does not infringe on intellectual property or third-party rights.
+                </p>
+            </div>
+        </div>
+
+        <!-- Document Card -->
+        <article class="doc-card">
+
+            <!-- Section 1: Overview Grid -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">1</span>
+                    <span>License Summary</span>
+                </h2>
+                <p class="doc-text">
+                    A quick overview of what the MIT License grants, requires, and disclaims:
+                </p>
+
+                <div class="license-grid">
+                    <!-- Permissions Card -->
+                    <div class="license-feature-card">
+                        <div class="license-feature-title allowed">
+                            <i class="ri-checkbox-circle-fill"></i>
+                            <span>Permissions</span>
+                        </div>
+                        <ul class="license-feature-list">
+                            <li><i class="ri-check-line" style="color: #34c759;"></i> Commercial use</li>
+                            <li><i class="ri-check-line" style="color: #34c759;"></i> Modification</li>
+                            <li><i class="ri-check-line" style="color: #34c759;"></i> Distribution</li>
+                            <li><i class="ri-check-line" style="color: #34c759;"></i> Private use</li>
+                        </ul>
+                    </div>
+
+                    <!-- Conditions Card -->
+                    <div class="license-feature-card">
+                        <div class="license-feature-title required">
+                            <i class="ri-information-fill"></i>
+                            <span>Conditions</span>
+                        </div>
+                        <ul class="license-feature-list">
+                            <li><i class="ri-file-text-line" style="color: var(--accent);"></i> Include copyright notice</li>
+                            <li><i class="ri-file-text-line" style="color: var(--accent);"></i> Include license copy</li>
+                        </ul>
+                    </div>
+
+                    <!-- Limitations Card -->
+                    <div class="license-feature-card">
+                        <div class="license-feature-title disclaimed">
+                            <i class="ri-close-circle-fill"></i>
+                            <span>Limitations</span>
+                        </div>
+                        <ul class="license-feature-list">
+                            <li><i class="ri-shield-cross-line" style="color: #ff3b30;"></i> No warranty</li>
+                            <li><i class="ri-shield-cross-line" style="color: #ff3b30;"></i> No liability</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Full Legal Text -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">2</span>
+                    <span>Official MIT License Text</span>
+                </h2>
+                <p class="doc-text">
+                    This license applies to the YABP showcase platform, website code, and repository tools:
+                </p>
+
+                <div class="code-block-wrapper">
+                    <div class="code-header">
+                        <span>LICENSE (MIT)</span>
+                        <button class="code-btn-copy" data-copy-target="license-text" type="button">
+                            <i class="ri-file-copy-line"></i> Copy Text
+                        </button>
+                    </div>
+                    <pre id="license-text"><code>MIT License
+
+Copyright (c) 2026 YABP Initiative & Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</code></pre>
+                </div>
+            </section>
+
+            <!-- Section 3: Member Project Licensing -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">3</span>
+                    <span>Member Project Licensing</span>
+                </h2>
+                <p class="doc-text">
+                    All individual projects featured in the YABP directory retain their respective authors' copyrights and specific open-source licenses:
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>Independent Ownership:</strong> Listing in YABP does not re-license your software or transfer any copyright ownership to YABP.
+                    </li>
+                    <li>
+                        <strong>Permissive Requirement:</strong> To qualify for directory inclusion, your project repository must have a clear, OSI-approved open-source license.
+                    </li>
+                    <li>
+                        <strong>Compliance:</strong> As outlined in our <a href="terms.html">Terms of Use</a>, if a project removes its open-source license, it may be delisted from the directory.
+                    </li>
+                </ul>
+            </section>
+
+        </article>
+
+        <!-- Next / Related Documents Cards -->
+        <nav class="doc-nav-cards" aria-label="Related documentation">
+            <a href="terms.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Governance</span>
+                    <span class="doc-nav-card-title">
+                        <span>Terms of Use</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Review brand guidelines, curation criteria, and directory maintenance rules.
+                </p>
+            </a>
+
+            <a href="contributing.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Join Directory</span>
+                    <span class="doc-nav-card-title">
+                        <span>Contributing Guidelines</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Learn how to submit your project and generate your 2-way verification badge.
+                </p>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- ─── Footer ───────────────────────── -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html#gallery" class="footer-link">Showcase</a>
+            <a href="terms.html" class="footer-link">Terms of Use</a>
+            <a href="contributing.html" class="footer-link">Contributing Guidelines</a>
+            <a href="security.html" class="footer-link">Security Policy</a>
+            <a href="license.html" class="footer-link">MIT License</a>
+            <a href="mailto:yabp.support@gmail.com" class="footer-link">
+                <i class="ri-mail-line"></i> yabp.support@gmail.com
+            </a>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="footer-link">
+                <i class="ri-github-fill"></i> GitHub
+            </a>
+        </div>
+        <p class="footer-copyright">
+            ✦ Community Initiative · Curated with ♥ for minimal, high-utility open source.
+        </p>
+    </footer>
+
+    <!-- Documentation Helper Script -->
+    <script src="docs.js" defer></script>
+</body>
+</html>

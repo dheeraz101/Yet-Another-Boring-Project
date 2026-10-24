@@ -4,7 +4,47 @@
 [build]
   publish = "."
   # Only trigger a build/deploy if core layout or script assets are changed.
-  ignore = "git diff --quiet HEAD^ HEAD -- index.html style.css app.js logo.png favicon.ico netlify.toml"
+  ignore = "git diff --quiet HEAD^ HEAD -- index.html terms.html contributing.html security.html license.html style.css app.js docs.js logo.png favicon.ico netlify.toml projects.json"
+
+[[redirects]]
+  from = "/terms"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/terms/"
+  to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/contributing"
+  to = "/contributing.html"
+  status = 200
+
+[[redirects]]
+  from = "/contributing/"
+  to = "/contributing.html"
+  status = 200
+
+[[redirects]]
+  from = "/security"
+  to = "/security.html"
+  status = 200
+
+[[redirects]]
+  from = "/security/"
+  to = "/security.html"
+  status = 200
+
+[[redirects]]
+  from = "/license"
+  to = "/license.html"
+  status = 200
+
+[[redirects]]
+  from = "/license/"
+  to = "/license.html"
+  status = 200
 
 [[headers]]
   for = "/*"
@@ -12,5 +52,5 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    # Strict Content-Security-Policy. External script and style sheets are leveraged.
-    Content-Security-Policy = "default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https://raw.githubusercontent.com https://cdn.jsdelivr.net; connect-src 'self' https://raw.githubusercontent.com;"
+    # Strict Content-Security-Policy supporting fonts, icons, and inline theme pre-init
+    Content-Security-Policy = "default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data: https://raw.githubusercontent.com https://cdn.jsdelivr.net; connect-src 'self' https://raw.githubusercontent.com;"

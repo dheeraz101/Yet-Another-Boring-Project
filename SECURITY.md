@@ -14,7 +14,7 @@ We value the security of the YABP ecosystem. If you discover a vulnerability, pl
 
 Do not open public GitHub issues for security bugs. Please email reports directly to:
 
-*   **Security Contact**: dheeraz.workspace@gmail.com
+*   **Security & Support Contact**: [yabp.support@gmail.com](mailto:yabp.support@gmail.com)
 
 In your report, please include:
 *   A description of the vulnerability.
@@ -24,3 +24,4 @@ In your report, please include:
 ### Response Commitment
 
 We will acknowledge your report within 48 hours and work on a resolution promptly. Once fixed, we will publish an advisory for the community.
+Read the official web version at [yabp.netlify.app/security.html](https://yabp.netlify.app/security.html).

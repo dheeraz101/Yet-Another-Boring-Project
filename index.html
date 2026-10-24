@@ -13,14 +13,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yabp.netlify.app/">
-    <meta property="og:title" content="YABP — Yet Another Boring Project">
+    <meta property="og:title" content="YABP: Yet Another Boring Project">
     <meta property="og:description" content="A curated directory of minimal, high-utility, and aesthetic open-source projects.">
     <meta property="og:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://yabp.netlify.app/">
-    <meta property="twitter:title" content="YABP — Yet Another Boring Project">
+    <meta property="twitter:title" content="YABP: Yet Another Boring Project">
     <meta property="twitter:description" content="A curated directory of minimal, high-utility, and aesthetic open-source projects.">
     <meta property="twitter:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
 
@@ -32,6 +32,16 @@
     <!-- Remix Icons -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
 
+    <!-- Synchronous Theme Pre-Init to eliminate FOUC (Apple HIG) -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('yabp-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="logo.png">
 
@@ -42,21 +52,64 @@
 
     <!-- ─── Navbar ───────────────────────── -->
     <header class="navbar">
-        <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" role="button" aria-label="Go to top">
+        <a href="index.html" class="nav-brand" aria-label="Go to YABP home">
             <img src="logo.png" alt="YABP Logo" class="nav-logo">
             <span>YABP•</span>
-        </div>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="#gallery" class="nav-link active">Showcase</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="contributing.html" class="nav-link">Contributing</a>
+            <a href="security.html" class="nav-link">Security</a>
+            <a href="license.html" class="nav-link">License</a>
+        </nav>
         <div class="nav-actions">
             <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
                 <i class="ri-moon-line"></i>
                 <i class="ri-sun-line"></i>
             </button>
-            <a href="#contribute" class="btn-contribute-nav" aria-label="Contribute on GitHub">
-                <i class="ri-github-fill"></i>
+            <a href="contributing.html" class="btn-contribute-nav" aria-label="Contribute to YABP">
+                <i class="ri-git-pull-request-line"></i>
                 <span>Contribute</span>
             </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+                <i class="ri-menu-line menu-open-icon"></i>
+                <i class="ri-close-line menu-close-icon"></i>
+            </button>
         </div>
     </header>
+
+    <!-- ─── Mobile Navigation Drawer (Apple HIG) ───── -->
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-drawer-content">
+            <a href="#gallery" class="mobile-drawer-link active">
+                <i class="ri-apps-2-line"></i>
+                <span>Showcase</span>
+            </a>
+            <a href="terms.html" class="mobile-drawer-link">
+                <i class="ri-scales-3-line"></i>
+                <span>Terms of Use</span>
+            </a>
+            <a href="contributing.html" class="mobile-drawer-link">
+                <i class="ri-git-pull-request-line"></i>
+                <span>Contributing Guidelines</span>
+            </a>
+            <a href="security.html" class="mobile-drawer-link">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Security Policy</span>
+            </a>
+            <a href="license.html" class="mobile-drawer-link">
+                <i class="ri-copyright-line"></i>
+                <span>MIT License</span>
+            </a>
+            <div class="mobile-drawer-divider"></div>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="mobile-drawer-link github">
+                <i class="ri-github-fill"></i>
+                <span>GitHub Repository</span>
+                <i class="ri-external-link-line" style="font-size: 0.8rem; margin-left: auto;"></i>
+            </a>
+        </div>
+    </nav>
 
     <!-- ─── Main Content Container ──────── -->
     <main class="container">
@@ -77,8 +130,8 @@
                     <span>Explore Showcase</span>
                     <i class="ri-arrow-right-line"></i>
                 </a>
-                <a href="#contribute" class="btn-secondary">
-                    <span>Read Guidelines</span>
+                <a href="contributing.html" class="btn-secondary">
+                    <span>Developer Guidelines</span>
                 </a>
             </div>
         </section>
@@ -127,6 +180,64 @@
             <!-- Right Column: Guidelines Sidebar -->
             <aside class="sidebar-section" id="contribute" aria-label="Submission guidelines">
                 
+                <!-- Developer Agreement Card -->
+                <div class="guideline-card">
+                    <h3 class="guideline-title">
+                        <i class="ri-file-shield-line" style="color: var(--accent);"></i>
+                        Developer Agreement
+                    </h3>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.5;">
+                        To maintain directory quality and ecosystem trust, all participating developers must agree to our community policies:
+                    </p>
+                    <div class="policy-pills">
+                        <a href="terms.html" class="policy-pill">
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-scales-3-line" style="color: var(--accent);"></i>
+                                <span>Terms of Use</span>
+                            </span>
+                            <i class="ri-arrow-right-s-line arrow"></i>
+                        </a>
+                        <a href="contributing.html" class="policy-pill">
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-git-pull-request-line" style="color: var(--accent);"></i>
+                                <span>Contributing Guidelines</span>
+                            </span>
+                            <i class="ri-arrow-right-s-line arrow"></i>
+                        </a>
+                        <a href="security.html" class="policy-pill">
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-shield-keyhole-line" style="color: var(--accent);"></i>
+                                <span>Security Policy</span>
+                            </span>
+                            <i class="ri-arrow-right-s-line arrow"></i>
+                        </a>
+                        <a href="license.html" class="policy-pill">
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                <i class="ri-copyright-line" style="color: var(--accent);"></i>
+                                <span>MIT License</span>
+                            </span>
+                            <i class="ri-arrow-right-s-line arrow"></i>
+                        </a>
+                    </div>
+
+                    <!-- Interactive Agreement Confirmation -->
+                    <div class="submission-agreement-box" id="agreementBox">
+                        <label class="agreement-checkbox-label" for="agreeCheck">
+                            <input type="checkbox" id="agreeCheck">
+                            <span class="agreement-custom-check">
+                                <i class="ri-check-line"></i>
+                            </span>
+                            <span class="agreement-label-text">
+                                I confirm my project complies with our <a href="terms.html">Terms</a>, <a href="contributing.html">Contributing</a>, and <a href="security.html">Security</a> standards. I understand that YABP is in its initial stage: projects are manually reviewed and verified (taking longer to appear), and only the best projects are kept (subject to removal without prior notice).
+                            </span>
+                        </label>
+                        <div class="submission-status-badge" id="submissionStatusBadge">
+                            <i class="ri-checkbox-circle-fill"></i>
+                            <span>Developer Policies Acknowledged</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="guideline-card">
                     <h3 class="guideline-title">
                         <i class="ri-git-pull-request-line" style="color: var(--accent);"></i>
@@ -146,7 +257,7 @@
                             <strong>Include YABP Logo Badge:</strong> Display the YABP logo badge prominently in your project's repository README file.
                         </li>
                         <li data-step="5">
-                            <strong>Open Pull Request:</strong> Open a PR. The automated validation will double-check your code before approval!
+                            <strong>Open PR &amp; Propagation:</strong> Submit your PR. Once merged, please note that it might take <strong>5 to 10 minutes</strong> to get loaded and be verifiable across global CDN caches!
                         </li>
                     </ul>
                     <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="btn-primary" style="margin-top: 16px; width: 100%; justify-content: center;">
@@ -170,8 +281,14 @@
                             * Ensure this exact URL is added inside your <code>projects.json</code> submission entry under <code>link</code> or <code>github</code> for a successful trust lookup.
                         </span>
                     </div>
+
+                    <!-- Propagation Warning Callout -->
+                    <div class="propagation-badge-notice">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Propagation Window:</strong> When you have added your project, it might take <strong>5 to 10 minutes</strong> to get loaded and be verifiable.</span>
+                    </div>
                     
-                    <div class="badge-preview-area">
+                    <div class="badge-preview-area" style="margin-top: 14px;">
                         <div class="badge-demo" style="margin-bottom: 4px;">
                             <a href="https://yabp.netlify.app" target="_blank" aria-label="Visit YABP platform">
                                 <img src="logo.png" alt="YABP Initiative Logo">
@@ -246,13 +363,20 @@
     <!-- ─── Footer ───────────────────────── -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project/blob/main/LICENSE" target="_blank" rel="noopener" class="footer-link">License</a>
-            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project/blob/main/SECURITY.md" target="_blank" rel="noopener" class="footer-link">Security Policy</a>
-            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener" class="footer-link">Contributing Guidelines</a>
-            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project/blob/main/TERMS_OF_USE.md" target="_blank" rel="noopener" class="footer-link">Terms of Use</a>
+            <a href="#gallery" class="footer-link">Showcase</a>
+            <a href="terms.html" class="footer-link">Terms of Use</a>
+            <a href="contributing.html" class="footer-link">Contributing Guidelines</a>
+            <a href="security.html" class="footer-link">Security Policy</a>
+            <a href="license.html" class="footer-link">MIT License</a>
+            <a href="mailto:yabp.support@gmail.com" class="footer-link">
+                <i class="ri-mail-line"></i> yabp.support@gmail.com
+            </a>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="footer-link">
+                <i class="ri-github-fill"></i> GitHub
+            </a>
         </div>
         <p class="footer-copyright">
-            ✦ Community Initiative · Made with ♥ for minimal design.
+            ✦ Community Initiative · Curated with ♥ for minimal, high-utility open source.
         </p>
     </footer>
 

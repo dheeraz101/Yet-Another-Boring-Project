@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use • YABP</title>
+
+    <!-- Meta Tags for Community Showcase & SEO -->
+    <meta name="description" content="Brand and curation terms of use for Yet Another Boring Project (YABP). Guidelines for directory listings, logo badge usage, and developer compliance.">
+    <meta name="keywords" content="YABP, Terms of Use, open source directory, developer standards, brand guidelines, minimalism">
+    <meta name="author" content="YABP Initiative">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yabp.netlify.app/terms.html">
+    <meta property="og:title" content="Terms of Use • YABP">
+    <meta property="og:description" content="Official brand and curation terms of use for projects listed in the YABP directory.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yabp.netlify.app/terms.html">
+    <meta property="twitter:title" content="Terms of Use • YABP">
+    <meta property="twitter:description" content="Official brand and curation terms of use for projects listed in the YABP directory.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Fonts (Inter for clean SF Pro styling) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Synchronous Theme Pre-Init to eliminate FOUC (Apple HIG) -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('yabp-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ─── Navbar ───────────────────────── -->
+    <header class="navbar">
+        <a href="index.html" class="nav-brand" aria-label="Go to YABP home">
+            <img src="logo.png" alt="YABP Logo" class="nav-logo">
+            <span>YABP•</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="index.html#gallery" class="nav-link">Showcase</a>
+            <a href="terms.html" class="nav-link active" aria-current="page">Terms</a>
+            <a href="contributing.html" class="nav-link">Contributing</a>
+            <a href="security.html" class="nav-link">Security</a>
+            <a href="license.html" class="nav-link">License</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+                <i class="ri-moon-line"></i>
+                <i class="ri-sun-line"></i>
+            </button>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="btn-contribute-nav" aria-label="View on GitHub">
+                <i class="ri-github-fill"></i>
+                <span>GitHub</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+                <i class="ri-menu-line menu-open-icon"></i>
+                <i class="ri-close-line menu-close-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── Mobile Navigation Drawer (Apple HIG) ───── -->
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-drawer-content">
+            <a href="index.html#gallery" class="mobile-drawer-link">
+                <i class="ri-apps-2-line"></i>
+                <span>Showcase</span>
+            </a>
+            <a href="terms.html" class="mobile-drawer-link active">
+                <i class="ri-scales-3-line"></i>
+                <span>Terms of Use</span>
+            </a>
+            <a href="contributing.html" class="mobile-drawer-link">
+                <i class="ri-git-pull-request-line"></i>
+                <span>Contributing Guidelines</span>
+            </a>
+            <a href="security.html" class="mobile-drawer-link">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Security Policy</span>
+            </a>
+            <a href="license.html" class="mobile-drawer-link">
+                <i class="ri-copyright-line"></i>
+                <span>MIT License</span>
+            </a>
+            <div class="mobile-drawer-divider"></div>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="mobile-drawer-link github">
+                <i class="ri-github-fill"></i>
+                <span>GitHub Repository</span>
+                <i class="ri-external-link-line" style="font-size: 0.8rem; margin-left: auto;"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ─── Main Content Container ──────── -->
+    <main class="doc-container">
+
+        <!-- Back to Showcase Breadcrumb -->
+        <a href="index.html" class="doc-back-link">
+            <i class="ri-arrow-left-s-line"></i>
+            <span>Back to Showcase</span>
+        </a>
+
+        <!-- Document Header -->
+        <header class="doc-header">
+            <div class="doc-badge">
+                <i class="ri-scales-3-line"></i>
+                <span>Brand &amp; Curation Policies</span>
+            </div>
+            <h1 class="doc-title">Brand &amp; Curation Terms of Use</h1>
+            <p class="doc-subtitle">
+                Welcome to the Yet Another Boring Project (YABP) initiative: a community registry of minimalist, productive, and open-source tools.
+            </p>
+            <div class="doc-meta">
+                <span><i class="ri-calendar-line"></i> Last Updated: October 2026</span>
+                <span><i class="ri-checkbox-circle-line"></i> Mandatory for All Listings</span>
+                <span><i class="ri-shield-user-line"></i> YABP Governance</span>
+            </div>
+        </header>
+
+        <!-- Mandatory Developer Agreement Callout -->
+        <div class="agreement-callout">
+            <div class="agreement-icon">
+                <i class="ri-file-shield-line"></i>
+            </div>
+            <div class="agreement-content">
+                <h4>Mandatory Developer Agreement</h4>
+                <p>
+                    By listing your project in the directory, using the YABP logo badge, or utilizing YABP branding assets, you agree to these <strong>Terms of Use</strong>, our <a href="contributing.html">Contributing Guidelines</a>, and our <a href="security.html">Security Policy</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Document Card -->
+        <article class="doc-card">
+
+            <!-- Section 1 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">1</span>
+                    <span>Brand Guidelines and Logo Usage</span>
+                </h2>
+                <p class="doc-text">
+                    The YABP logo and name signify an uncompromising dedication to clean, distraction-free utility, high reliability, and privacy.
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>Logo Badge Requirement:</strong> Projects listed in the registry must display the official YABP logo badge in their repository README file, configured for 2-way verification as outlined in our <a href="contributing.html">Contributing Guidelines</a>.
+                    </li>
+                    <li>
+                        <strong>Visual Integrity:</strong> You may scale the badge size to match your README typography and layout, but you must preserve the original aspect ratio and core design elements without altering brand colors or iconography.
+                    </li>
+                    <li>
+                        <strong>Accurate Representation:</strong> Listing in the directory confers status as a recognized community project. You must not claim that the YABP core maintainers created, financed, or exclusively endorse your project beyond this directory registry status.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">2</span>
+                    <span>Directory Curation Policies</span>
+                </h2>
+                <p class="doc-text">
+                    YABP maintains a strict quality bar to ensure the directory remains trustworthy and genuinely useful for developers.
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>Initial Stage &amp; Manual Verification:</strong> YABP is currently in its initial stage. Submissions may take longer to appear in the directory because each tool is personally and manually checked, tested, and verified by our maintainers prior to inclusion.
+                    </li>
+                    <li>
+                        <strong>Curated Selection &amp; Discretionary Removal:</strong> YABP is an intentionally curated showcase; only the best, highest-utility projects are retained. We reserve the absolute right to decline submissions or remove any listing at any time without prior notice if it becomes unmaintained, introduces visual noise or bloat, adds third-party trackers, loses its open-source license, or fails to meet our quality criteria.
+                    </li>
+                    <li>
+                        <strong>Listing Maintenance:</strong> Project maintainers are responsible for keeping repositories active, functional, and in compliance with community standards.
+                    </li>
+                </ul>
+
+                <!-- Propagation Note Callout -->
+                <div class="info-callout propagation">
+                    <i class="ri-time-line"></i>
+                    <div>
+                        <strong>Notice on Manual Verification &amp; Propagation (5-10 Minutes):</strong>
+                        <p style="margin-top: 4px; font-size: 0.82rem;">
+                            Because all projects are manually verified in this initial stage, listings take longer to be reviewed and approved. Once approved and merged into the registry, global CDN caches, GitHub raw file nodes, and Netlify edge builds typically synchronize within <strong>5-10 minutes</strong>.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">3</span>
+                    <span>Disclaimers & Limitations of Liability</span>
+                </h2>
+                <p class="doc-text">
+                    Please read these liability limitations carefully:
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>Registry Provision:</strong> This showcase platform is provided on an "as-is" and "as-available" basis. We make no representations or warranties regarding uptime, availability, or uninterrupted accessibility.
+                    </li>
+                    <li>
+                        <strong>Third-Party Projects:</strong> Listed directory items link directly to external repositories and live deployments. We do not audit or guarantee the code quality, runtime security, dependencies, or privacy practices of external third-party software. Users inspect and execute third-party listings at their own risk.
+                    </li>
+                    <li>
+                        <strong>Limitation of Liability:</strong> In no event shall the YABP maintainers, authors, or contributors be held liable for any claim, damages, data loss, or other liability arising from the use of listed projects, reliance on directory content, or the removal of listings.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">4</span>
+                    <span>Developer Conduct Standards</span>
+                </h2>
+                <p class="doc-text">
+                    All participating open-source contributors and project authors are expected to uphold the highest standards of professional conduct:
+                </p>
+                <ul class="doc-list">
+                    <li>Maintain polite, constructive, and collaborative communication on issues, pull requests, and discussions.</li>
+                    <li>Respect user privacy, copyright attributions, and software licenses.</li>
+                    <li>Never introduce deceptive practices, adware, cryptocurrency miners, or covert tracking routines into member tools.</li>
+                </ul>
+            </section>
+
+        </article>
+
+        <!-- Next / Related Documents Cards -->
+        <nav class="doc-nav-cards" aria-label="Related documentation">
+            <a href="contributing.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Next Policy</span>
+                    <span class="doc-nav-card-title">
+                        <span>Contributing Guidelines</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Read our step-by-step submission guide, JSON format, and 2-way verification setup.
+                </p>
+            </a>
+
+            <a href="security.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Security</span>
+                    <span class="doc-nav-card-title">
+                        <span>Security Policy</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Understand our vulnerability reporting procedure and response commitments.
+                </p>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- ─── Footer ───────────────────────── -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html#gallery" class="footer-link">Showcase</a>
+            <a href="terms.html" class="footer-link">Terms of Use</a>
+            <a href="contributing.html" class="footer-link">Contributing Guidelines</a>
+            <a href="security.html" class="footer-link">Security Policy</a>
+            <a href="license.html" class="footer-link">MIT License</a>
+            <a href="mailto:yabp.support@gmail.com" class="footer-link">
+                <i class="ri-mail-line"></i> yabp.support@gmail.com
+            </a>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="footer-link">
+                <i class="ri-github-fill"></i> GitHub
+            </a>
+        </div>
+        <p class="footer-copyright">
+            ✦ Community Initiative · Curated with ♥ for minimal, high-utility open source.
+        </p>
+    </footer>
+
+    <!-- Documentation Helper Script -->
+    <script src="docs.js" defer></script>
+</body>
+</html>

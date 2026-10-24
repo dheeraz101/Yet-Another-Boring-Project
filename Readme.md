@@ -53,8 +53,9 @@ We welcome contributions of functional, aesthetic utility tools:
     ```
 3.  Include the YABP Logo Badge in your project README (see badge instructions below).
 4.  Open a Pull Request. CI validation will check your JSON formatting automatically.
+5.  **Review & Manual Verification:** YABP is in its initial stage. Submissions take longer to appear because each project is personally tested and manually verified. Only the best projects are kept, and any project may be removed without prior notice to preserve curation quality.
 
-Read [CONTRIBUTING.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/CONTRIBUTING.md) for full quality standards.
+Read the official [Contributing Guidelines](https://yabp.netlify.app/contributing.html) for full quality standards.
 
 ---
 
@@ -62,7 +63,7 @@ Read [CONTRIBUTING.md](file:///d:/Github_Projects/Yet-Another-Boring-Project/CON
 
 All directory projects must link back to YABP. By appending your project's URL, the YABP portal will dynamically verify your listing and display a verification trust modal.
 
-You can instantly generate your custom badge links using the interactive **Badge & Link Generator** on the website: [yabp.netlify.app](https://yabp.netlify.app).
+You can instantly generate your custom badge links using the interactive **Badge & Link Generator** on the website: [yabp.netlify.app/contributing.html](https://yabp.netlify.app/contributing.html).
 
 If you wish to copy them manually, replace `YOUR_PROJECT_URL` with your exact live project or GitHub URL (ensure this matches your `projects.json` entry):
 
@@ -86,8 +87,11 @@ https://yabp.netlify.app/?verify=YOUR_PROJECT_URL
 
 ---
 
-## Terms & License
+## Developer Policies & License
 
-*   This registry and website are licensed under the [MIT License](file:///d:/Github_Projects/Yet-Another-Boring-Project/LICENSE).
-*   Listed member projects retain their own licensing terms.
-*   Participation is subject to the [Terms of Use](file:///d:/Github_Projects/Yet-Another-Boring-Project/TERMS_OF_USE.md).
+All participants and listed tools must agree to our community developer standards:
+*   [Terms of Use](https://yabp.netlify.app/terms.html): Brand guidelines, curation criteria, and directory maintenance policies.
+*   [Contributing Guidelines](https://yabp.netlify.app/contributing.html): JSON schema specifications, 2-way verification, and PR workflow.
+*   [Security Policy](https://yabp.netlify.app/security.html): Vulnerability disclosure protocol and ecosystem protection.
+*   [MIT License](https://yabp.netlify.app/license.html): Open-source license terms and permissions. Member projects retain their own licensing.
+*   **Official Support**: [yabp.support@gmail.com](mailto:yabp.support@gmail.com)

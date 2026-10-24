@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Policy • YABP</title>
+
+    <!-- Meta Tags for Community Showcase & SEO -->
+    <meta name="description" content="Security policy, vulnerability disclosure procedure, and ecosystem safety standards for Yet Another Boring Project (YABP).">
+    <meta name="keywords" content="YABP, Security Policy, vulnerability disclosure, open source security, privacy, reporting">
+    <meta name="author" content="YABP Initiative">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yabp.netlify.app/security.html">
+    <meta property="og:title" content="Security Policy • YABP">
+    <meta property="og:description" content="Official security policy and responsible vulnerability disclosure process for the YABP ecosystem.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yabp.netlify.app/security.html">
+    <meta property="twitter:title" content="Security Policy • YABP">
+    <meta property="twitter:description" content="Official security policy and responsible vulnerability disclosure process for the YABP ecosystem.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/main/og-image.jpg">
+
+    <!-- Fonts (Inter for clean SF Pro styling) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Synchronous Theme Pre-Init to eliminate FOUC (Apple HIG) -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('yabp-theme');
+            if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark-mode');
+            }
+        })();
+    </script>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ─── Navbar ───────────────────────── -->
+    <header class="navbar">
+        <a href="index.html" class="nav-brand" aria-label="Go to YABP home">
+            <img src="logo.png" alt="YABP Logo" class="nav-logo">
+            <span>YABP•</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+            <a href="index.html#gallery" class="nav-link">Showcase</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="contributing.html" class="nav-link">Contributing</a>
+            <a href="security.html" class="nav-link active" aria-current="page">Security</a>
+            <a href="license.html" class="nav-link">License</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="theme-btn" id="themeToggle" type="button" aria-label="Toggle theme">
+                <i class="ri-moon-line"></i>
+                <i class="ri-sun-line"></i>
+            </button>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="btn-contribute-nav" aria-label="View on GitHub">
+                <i class="ri-github-fill"></i>
+                <span>GitHub</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileDrawer">
+                <i class="ri-menu-line menu-open-icon"></i>
+                <i class="ri-close-line menu-close-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── Mobile Navigation Drawer (Apple HIG) ───── -->
+    <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-drawer-content">
+            <a href="index.html#gallery" class="mobile-drawer-link">
+                <i class="ri-apps-2-line"></i>
+                <span>Showcase</span>
+            </a>
+            <a href="terms.html" class="mobile-drawer-link">
+                <i class="ri-scales-3-line"></i>
+                <span>Terms of Use</span>
+            </a>
+            <a href="contributing.html" class="mobile-drawer-link">
+                <i class="ri-git-pull-request-line"></i>
+                <span>Contributing Guidelines</span>
+            </a>
+            <a href="security.html" class="mobile-drawer-link active">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Security Policy</span>
+            </a>
+            <a href="license.html" class="mobile-drawer-link">
+                <i class="ri-copyright-line"></i>
+                <span>MIT License</span>
+            </a>
+            <div class="mobile-drawer-divider"></div>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="mobile-drawer-link github">
+                <i class="ri-github-fill"></i>
+                <span>GitHub Repository</span>
+                <i class="ri-external-link-line" style="font-size: 0.8rem; margin-left: auto;"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ─── Main Content Container ──────── -->
+    <main class="doc-container">
+
+        <!-- Back to Showcase Breadcrumb -->
+        <a href="index.html" class="doc-back-link">
+            <i class="ri-arrow-left-s-line"></i>
+            <span>Back to Showcase</span>
+        </a>
+
+        <!-- Document Header -->
+        <header class="doc-header">
+            <div class="doc-badge">
+                <i class="ri-shield-keyhole-line"></i>
+                <span>Ecosystem Security</span>
+            </div>
+            <h1 class="doc-title">Security Policy & Vulnerability Disclosure</h1>
+            <p class="doc-subtitle">
+                We value the security and privacy of the YABP ecosystem. Learn how to report vulnerabilities responsibly.
+            </p>
+            <div class="doc-meta">
+                <span><i class="ri-calendar-line"></i> Last Updated: October 2026</span>
+                <span><i class="ri-mail-send-line"></i> 48-Hour Response Commitment</span>
+                <span><i class="ri-lock-password-line"></i> Responsible Disclosure</span>
+            </div>
+        </header>
+
+        <!-- Mandatory Developer Agreement Callout -->
+        <div class="agreement-callout">
+            <div class="agreement-icon">
+                <i class="ri-file-shield-line"></i>
+            </div>
+            <div class="agreement-content">
+                <h4>Mandatory Developer Agreement</h4>
+                <p>
+                    All contributors and member projects must uphold strict security hygiene: zero telemetry scripts, safe dependencies, prompt resolution of known vulnerabilities, and compliance with our <a href="terms.html">Terms of Use</a> and <a href="contributing.html">Contributing Guidelines</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Document Card -->
+        <article class="doc-card">
+
+            <!-- Section 1 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">1</span>
+                    <span>Supported Versions</span>
+                </h2>
+                <p class="doc-text">
+                    We actively maintain and provide security updates for the current release of this platform and repository:
+                </p>
+
+                <div class="table-wrapper">
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Version</th>
+                                <th>Support Status</th>
+                                <th>Deployment Model</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>latest (main branch)</code></td>
+                                <td>
+                                    <span style="color: #34c759; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
+                                        <i class="ri-checkbox-circle-fill"></i> Supported
+                                    </span>
+                                </td>
+                                <td>Continuous deployment via Netlify Edge</td>
+                            </tr>
+                            <tr>
+                                <td><code>legacy tags</code></td>
+                                <td>
+                                    <span style="color: var(--text-tertiary); display: inline-flex; align-items: center; gap: 4px;">
+                                        <i class="ri-close-circle-line"></i> Unsupported
+                                    </span>
+                                </td>
+                                <td>Archival only. Please sync with main branch.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">2</span>
+                    <span>Reporting a Vulnerability</span>
+                </h2>
+                <p class="doc-text">
+                    We take all vulnerability reports seriously. If you discover a security flaw or vulnerability within YABP infrastructure or listed tools, please disclose it privately.
+                </p>
+
+                <!-- Critical Advisory Box -->
+                <div class="info-callout" style="background: rgba(255, 59, 48, 0.08); border-color: rgba(255, 59, 48, 0.22);">
+                    <i class="ri-alert-line" style="color: #ff3b30;"></i>
+                    <div>
+                        <strong style="color: var(--text-primary); font-size: 0.9rem;">
+                            Do Not Open Public GitHub Issues for Security Bugs:
+                        </strong>
+                        <p style="margin-top: 4px;">
+                            Publicly filing security vulnerabilities exposes active users before a patch can be developed. Always email reports directly to our designated security contact.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Card -->
+                <div style="background: var(--bg-card-nested); border: 1px solid var(--border-card-nested); border-radius: var(--radius-md); padding: 18px; margin: 18px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; box-shadow: var(--shadow-sm);">
+                    <div>
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-tertiary); display: block; font-weight: 600;">
+                            Official Security &amp; Support Contact
+                        </span>
+                        <a href="mailto:yabp.support@gmail.com" style="font-size: 1.05rem; font-weight: 600; color: var(--accent); font-family: 'SF Mono', Consolas, monospace;">
+                            yabp.support@gmail.com
+                        </a>
+                    </div>
+                    <a href="mailto:yabp.support@gmail.com?subject=YABP%20Security%20Vulnerability%20Report" class="btn-primary" style="padding: 8px 18px; font-size: 0.84rem;">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Email Security Report</span>
+                    </a>
+                </div>
+
+                <p class="doc-text" style="font-weight: 600; margin-top: 20px;">
+                    What to include in your security report:
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>Vulnerability Description:</strong> A comprehensive explanation of the vulnerability and its potential attack vector.
+                    </li>
+                    <li>
+                        <strong>Reproduction Steps:</strong> Detailed step-by-step instructions or minimal proof-of-concept (PoC) code to reproduce the flaw.
+                    </li>
+                    <li>
+                        <strong>Impact Assessment:</strong> Expected impact on end-user privacy, platform availability, or code execution integrity.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">3</span>
+                    <span>Response Commitment</span>
+                </h2>
+                <p class="doc-text">
+                    Our maintainers are committed to transparent and swift security remediation:
+                </p>
+                <ul class="doc-list">
+                    <li>
+                        <strong>48-Hour Acknowledgment:</strong> We will acknowledge receipt of your report within 48 hours and provide an initial severity assessment.
+                    </li>
+                    <li>
+                        <strong>Resolution Commitment:</strong> We will work diligently on validating a patch. We ask reporters to allow reasonable time for a fix before public disclosure.
+                    </li>
+                    <li>
+                        <strong>Community Advisory:</strong> Once remediated, we will issue a security advisory in the repository releases and credit the researcher for their responsible disclosure.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="doc-section">
+                <h2 class="doc-section-title">
+                    <span class="doc-section-number">4</span>
+                    <span>Security Standards for Member Tools</span>
+                </h2>
+                <p class="doc-text">
+                    Directory members must adhere to strict ecosystem hygiene:
+                </p>
+                <ul class="doc-list">
+                    <li>Zero obfuscated client code or disguised payload scripts.</li>
+                    <li>No third-party advertising networks or tracking pixels.</li>
+                    <li>Enforce strict Content-Security-Policy (CSP) headers where applicable.</li>
+                    <li>Regularly audit and update open-source dependencies.</li>
+                </ul>
+            </section>
+
+        </article>
+
+        <!-- Next / Related Documents Cards -->
+        <nav class="doc-nav-cards" aria-label="Related documentation">
+            <a href="terms.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Governance</span>
+                    <span class="doc-nav-card-title">
+                        <span>Terms of Use</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Review directory listing criteria, branding terms, and curation standards.
+                </p>
+            </a>
+
+            <a href="license.html" class="doc-nav-card">
+                <div>
+                    <span class="doc-nav-card-label">Open Source</span>
+                    <span class="doc-nav-card-title">
+                        <span>MIT License</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-tertiary); margin-top: 8px;">
+                    Inspect licensing terms, permissions, and copyright attributions.
+                </p>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- ─── Footer ───────────────────────── -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="index.html#gallery" class="footer-link">Showcase</a>
+            <a href="terms.html" class="footer-link">Terms of Use</a>
+            <a href="contributing.html" class="footer-link">Contributing Guidelines</a>
+            <a href="security.html" class="footer-link">Security Policy</a>
+            <a href="license.html" class="footer-link">MIT License</a>
+            <a href="mailto:yabp.support@gmail.com" class="footer-link">
+                <i class="ri-mail-line"></i> yabp.support@gmail.com
+            </a>
+            <a href="https://github.com/dheeraz101/Yet-Another-Boring-Project" target="_blank" rel="noopener" class="footer-link">
+                <i class="ri-github-fill"></i> GitHub
+            </a>
+        </div>
+        <p class="footer-copyright">
+            ✦ Community Initiative · Curated with ♥ for minimal, high-utility open source.
+        </p>
+    </footer>
+
+    <!-- Documentation Helper Script -->
+    <script src="docs.js" defer></script>
+</body>
+</html>

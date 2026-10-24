@@ -32,17 +32,31 @@
     let filteredProjects = [];
     let activeSortValue = 'recent';
 
-    // Theme Handlers
-    const savedTheme = localStorage.getItem('yabp-theme') || 'light';
-    if (savedTheme === 'dark') {
+    // Theme Handlers (respects saved preference or OS dark mode)
+    const savedTheme = localStorage.getItem('yabp-theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         htmlElement.classList.add('dark-mode');
     }
 
-    themeToggleBtn.addEventListener('click', () => {
-        htmlElement.classList.toggle('dark-mode');
-        const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('yabp-theme', currentTheme);
-    });
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark-mode');
+            const currentTheme = htmlElement.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('yabp-theme', currentTheme);
+        });
+    }
+
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('yabp-theme')) {
+                if (e.matches) {
+                    htmlElement.classList.add('dark-mode');
+                } else {
+                    htmlElement.classList.remove('dark-mode');
+                }
+            }
+        });
+    }
 
     // Custom Dropdown Trigger Handlers
     function toggleDropdown() {
@@ -163,7 +177,7 @@
 
     // Format date helper (e.g. "2026-05-23" -> "May 23, 2026")
     function formatDate(dateStr) {
-        if (!dateStr) return '—';
+        if (!dateStr) return '-';
         try {
             const date = new Date(dateStr);
             if (isNaN(date.getTime())) return dateStr;
@@ -261,18 +275,35 @@
         renderProjects();
     }
 
+    // Normalizes URLs for highly resilient matching (ignoring protocol, trailing slash, .git, query, and hash)
+    function normalizeVerifyUrl(url) {
+        if (!url) return '';
+        try {
+            let u = decodeURIComponent(url).trim().toLowerCase();
+            u = u.replace(/\/+$/, '');
+            u = u.replace(/\.git$/, '');
+            u = u.replace(/^https?:\/\//, '');
+            u = u.replace(/^www\./, '');
+            u = u.split('?')[0].split('#')[0];
+            u = u.replace(/\/+$/, '');
+            return u;
+        } catch (e) {
+            return url.trim().toLowerCase().replace(/\/+$/, '');
+        }
+    }
+
     // 2-Way Trust Verification URL Parameter Lookup
     function handleVerification() {
         const urlParams = new URLSearchParams(window.location.search);
         const verifyUrl = urlParams.get('verify');
         if (!verifyUrl) return;
 
-        const cleanVerifyUrl = verifyUrl.trim().toLowerCase().replace(/\/$/, ""); // strip trailing slashes
+        const cleanVerifyUrl = normalizeVerifyUrl(verifyUrl);
 
         const match = projects.find(p => {
-            const link = (p.link || '').trim().toLowerCase().replace(/\/$/, "");
-            const github = (p.github || '').trim().toLowerCase().replace(/\/$/, "");
-            return link === cleanVerifyUrl || github === cleanVerifyUrl;
+            const link = normalizeVerifyUrl(p.link || '');
+            const github = normalizeVerifyUrl(p.github || '');
+            return (link && link === cleanVerifyUrl) || (github && github === cleanVerifyUrl);
         });
 
         const badgeEl = document.getElementById('verifyStatusBadge');
@@ -310,10 +341,13 @@
             badgeText.textContent = 'Verification Failed';
             titleEl.textContent = 'Unregistered Project';
             messageEl.innerHTML = `
-                The project at the URL below is not listed in the official YABP directory.
+                The project at the URL below is not currently found in the official YABP directory.
                 <span class="verify-url-text">${escapeHTML(verifyUrl)}</span>
-                <br>
-                If this is your project, please read the contribution guidelines below to submit a listing.
+                <div class="verify-propagation-tip">
+                    <i class="ri-time-line"></i>
+                    <span><strong>Recently submitted or merged?</strong> When you have added the project, it might take <strong>5 to 10 minutes</strong> to get loaded and be verifiable across global CDN caches.</span>
+                </div>
+                If you haven't submitted your project yet, check our <a href="contributing.html" class="modal-link">Contributing Guidelines</a> and <a href="terms.html" class="modal-link">Terms of Use</a> to list your tool.
             `;
         }
 
@@ -321,26 +355,55 @@
         verifyModal.classList.add('active');
         document.body.style.overflow = 'hidden';
 
-        closeBtn.addEventListener('click', () => {
+        function closeVerificationModal() {
             verifyModal.classList.remove('active');
             document.body.style.overflow = '';
             
             // Strip the verify parameter from the URL bar without forcing reload
             const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
             window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
-        });
+            document.removeEventListener('keydown', handleModalKeyDown);
+        }
+
+        function handleModalKeyDown(e) {
+            if (e.key === 'Escape' && verifyModal.classList.contains('active')) {
+                closeVerificationModal();
+            }
+        }
+
+        closeBtn.onclick = closeVerificationModal;
+        verifyModal.onclick = (e) => {
+            if (e.target === verifyModal) {
+                closeVerificationModal();
+            }
+        };
+        document.addEventListener('keydown', handleModalKeyDown);
     }
 
-    // Load projects from database
+    // Load projects from database (with fallback for local file:// previews)
     async function loadProjects() {
         showLoading();
         try {
-            const response = await fetch(JSON_URL, {
-                cache: 'no-cache'
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP Error ${response.status}`);
+            let response;
+            try {
+                response = await fetch(JSON_URL, {
+                    cache: 'no-cache'
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP Error ${response.status}`);
+                }
+            } catch (fetchErr) {
+                if (isLocal) {
+                    // Fallback to online raw data if local CORS blocked file:// fetch
+                    response = await fetch('https://raw.githubusercontent.com/dheeraz101/Yet-Another-Boring-Project/refs/heads/main/projects.json', {
+                        cache: 'no-cache'
+                    });
+                    if (!response.ok) throw new Error(`Fallback HTTP Error ${response.status}`);
+                } else {
+                    throw fetchErr;
+                }
             }
+
             const data = await response.json();
             if (!data.projects || !Array.isArray(data.projects)) {
                 throw new Error('Invalid JSON format');
@@ -453,7 +516,80 @@
         codeDirectNode.textContent = `https://yabp.netlify.app/?verify=${inputVal}`;
     }
 
-    badgeUrlInput.addEventListener('input', updateGeneratorSnippets);
+    // Mobile Drawer Navigation (Apple HIG)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    if (mobileMenuBtn && mobileDrawer) {
+        function toggleMobileDrawer() {
+            const isOpen = mobileDrawer.classList.contains('active');
+            if (isOpen) {
+                closeMobileDrawer();
+            } else {
+                openMobileDrawer();
+            }
+        }
+
+        function openMobileDrawer() {
+            mobileDrawer.classList.add('active');
+            mobileMenuBtn.classList.add('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+            mobileDrawer.setAttribute('aria-hidden', 'false');
+            document.addEventListener('click', closeMobileDrawerOutside);
+            document.addEventListener('keydown', handleMobileDrawerEsc);
+        }
+
+        function closeMobileDrawer() {
+            mobileDrawer.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileDrawer.setAttribute('aria-hidden', 'true');
+            document.removeEventListener('click', closeMobileDrawerOutside);
+            document.removeEventListener('keydown', handleMobileDrawerEsc);
+        }
+
+        function closeMobileDrawerOutside(e) {
+            if (!mobileDrawer.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                closeMobileDrawer();
+            }
+        }
+
+        function handleMobileDrawerEsc(e) {
+            if (e.key === 'Escape') {
+                closeMobileDrawer();
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileDrawer);
+
+        const drawerLinks = mobileDrawer.querySelectorAll('.mobile-drawer-link');
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', closeMobileDrawer);
+        });
+    }
+
+    // Developer Agreement Checkbox Toggle
+    const agreeCheck = document.getElementById('agreeCheck');
+    const agreementBox = document.getElementById('agreementBox');
+    if (agreeCheck && agreementBox) {
+        agreeCheck.addEventListener('change', () => {
+            if (agreeCheck.checked) {
+                agreementBox.classList.add('agreed');
+            } else {
+                agreementBox.classList.remove('agreed');
+            }
+        });
+    }
+
+    // Smooth scroll to top when nav-brand is clicked on index.html
+    const navBrand = document.querySelector('.nav-brand');
+    if (navBrand) {
+        navBrand.addEventListener('click', (e) => {
+            if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    }
 
     // Init
     loadProjects();

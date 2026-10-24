@@ -1,16 +1,18 @@
-name: Verify Projects Database
+name: Verify Projects Database & Website
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'projects.json'
+      - '*.html'
       - '.github/workflows/verify-projects.yml'
-      - '.github/scripts/verify-projects.js'
+      - '.github/scripts/**'
   pull_request:
     branches: [ main ]
     paths:
       - 'projects.json'
+      - '*.html'
 
 jobs:
   verify:
@@ -27,3 +29,6 @@ jobs:
 
     - name: Run Project JSON Validation
       run: node .github/scripts/verify-projects.js
+
+    - name: Run HTML & Asset Reference Validation
+      run: node .github/scripts/verify-html.js

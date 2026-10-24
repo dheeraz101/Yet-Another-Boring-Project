@@ -2,7 +2,7 @@
 
 Thank you for your interest in contributing. We curate this directory with high-quality, minimal developer tools that prioritize utility and design.
 
-By submitting a project, you agree that it fits our design criteria and that you will actively maintain it.
+By submitting a project, you agree that it fits our design criteria, follows our privacy standards, and that you will actively maintain it. All contributors must review and agree to our [Terms of Use](https://yabp.netlify.app/terms.html), [Security Policy](https://yabp.netlify.app/security.html), and [Contributing Guidelines](https://yabp.netlify.app/contributing.html).
 
 ---
 
@@ -63,14 +63,20 @@ node .github/scripts/verify-projects.js
 ```
 Push changes and open a Pull Request. Automated CI checks will validate your JSON structure.
 
+### 5. Manual Verification & Curation Review (Initial Stage Notice)
+Because YABP is in its initial stage, projects take longer to appear in the directory. Every submission is personally checked, functionally tested, and manually verified by maintainers before approval.
+
+**Curation & Removal Policy:** YABP is an intentionally curated showcase where only the best, highest-utility tools are kept. Any project may be removed at any time without prior notice if it becomes unmaintained, introduces tracking, or degrades in quality. Once merged and verified, global CDN cache invalidation typically takes 5-10 minutes.
+
 ---
 
 ## Design and Quality Guidelines
 
-We manually review all submissions and will reject projects that fall short of these principles:
+We manually review all submissions and will decline projects that fall short of these principles:
 
 *   **Minimalist Design**: Clean typography, high contrast, balanced grid structures, and zero visual clutter (inspired by Apple HIG).
 *   **Utility Focus**: Solves a real problem, saves time, or increases focus. No basic tutorial copies or joke repos.
 *   **Production Ready**: No broken links, "coming soon" placeholders, or incomplete components.
-*   **Privacy First**: No third-party trackers, ad injection, or client-side analytics scripts.
-*   **Open Source**: Repository must have an active open-source license.
+*   **Strict Privacy**: No third-party trackers, ad injection, telemetry, or client-side analytics scripts.
+*   **Open Source**: Repository must have an active OSI-approved open-source license.
+*   **Support & Inquiries**: For questions about submissions, reach out to [yabp.support@gmail.com](mailto:yabp.support@gmail.com).
