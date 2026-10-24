@@ -8,6 +8,13 @@
     "github": "https://github.com/dheeraz101/Empty"
   },
   {
+    "name": "Confitext",
+    "date": "2026-10-24",
+    "description": "An Obsidian Plugin to hide notes in a matrix style.",
+    "link": "",
+    "github": "https://github.com/dheeraz101/Confitext"
+  },
+  {
     "name": "OriginJS",
     "date": "2026-01-24",
     "description": "lightweight, zero-config JavaScript library that visually exposes content origin metadata",
